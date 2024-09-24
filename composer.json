@@ -1,0 +1,11 @@
+{
+    "name": "globalmoderators/aia-connector",
+    "description": "SDK to communicatie with the AIA-service",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Globalmoderators\\AiaConnector\\": "src/"
+        }
+    },
+    "require": {}
+}
