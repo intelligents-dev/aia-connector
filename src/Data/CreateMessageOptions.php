@@ -2,10 +2,13 @@
 
 namespace GlobalModerators\AiaConnector\Data;
 
+use GlobalModerators\AiaConnector\Data\Concerns\Makeable;
 use Illuminate\Contracts\Support\Arrayable;
 
 class CreateMessageOptions implements Arrayable
 {
+    use Makeable;
+
     public function __construct(
         public ?string $systemPrompt = null,
         public ?int $temperature = null,
