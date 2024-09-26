@@ -34,7 +34,7 @@ use GlobalModerators\AiaConnector\Requests\Conversations\Data\CreateCharacterOpt
 $options = CreateCharacterOptions::make()
     ->setSystemPrompt('You are a beautiful woman with blonde hair.');
 
-// Build and send a message
+// Build and send request
 $character = AiaConnector::make()
     ->characters()
     ->create($options);
@@ -61,7 +61,7 @@ $options = CreateMessageOptions::make()
     ->setTopP(0.5)
     ->setTopK(50);
 
-// Build and send a message
+// Build and send request
 $response = AiaConnector::make()
     ->conversations()
     ->messages()
@@ -91,7 +91,7 @@ $options = CreateTextToImageOptions::make()
     ->setLoraScale(0.5)
     ->setLoraWeightName('name');
 
-// Build and send a message
+// Build and send request
 $response = AiaConnector::make()
     ->images()
     ->textToImage()
@@ -119,7 +119,7 @@ $options = CreateTextToImageWithFaceSwapOptions::make()
     ->setSourceUrl('https://source.com/image.jpg')
     ->setStartMergeStep(5);
 
-// Build and send a message
+// Build and send request
 $response = AiaConnector::make()
     ->images()
     ->textToImageWithFaceSwap()
