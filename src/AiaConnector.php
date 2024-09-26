@@ -1,7 +1,8 @@
 <?php
 namespace GlobalModerators\AiaConnector;
-use GlobalModerators\AiaConnector\Resources\ConversationResource;
-use GlobalModerators\AiaConnector\Resources\ImageResource;
+
+use Globalmoderators\AiaConnector\Resources\ConversationResource;
+use Globalmoderators\AiaConnector\Resources\ImageResource;
 use Saloon\Http\Auth\TokenAuthenticator;
 use Saloon\Http\Connector;
 
