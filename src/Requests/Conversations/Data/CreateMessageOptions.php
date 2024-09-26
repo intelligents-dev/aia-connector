@@ -1,6 +1,6 @@
 <?php
 
-namespace GlobalModerators\AiaConnector\Data;
+namespace GlobalModerators\AiaConnector\Requests\Conversations\Data;
 
 use Illuminate\Contracts\Support\Arrayable;
 use Saloon\Traits\Makeable;

@@ -4,17 +4,14 @@ namespace GlobalModerators\AiaConnector;
 
 use GlobalModerators\AiaConnector\Resources\ConversationResource;
 use Globalmoderators\AiaConnector\Resources\ImageResource;
-use Saloon\Contracts\Body\HasBody;
 use Saloon\Http\Auth\TokenAuthenticator;
 use Saloon\Http\Connector;
 use Saloon\HttpSender\HttpSender;
-use Saloon\Traits\Body\HasJsonBody;
 use Saloon\Traits\Plugins\AcceptsJson;
 
-class AiaConnector extends Connector implements HasBody
+class AiaConnector extends Connector
 {
     use AcceptsJson;
-    use HasJsonBody;
 
     /**
      * The default sender for the AIA API.

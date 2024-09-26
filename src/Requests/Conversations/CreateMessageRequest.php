@@ -1,8 +1,8 @@
 <?php
 
-namespace GlobalModerators\AiaConnector\Requests\Messages;
+namespace GlobalModerators\AiaConnector\Requests\Conversations;
 
-use GlobalModerators\AiaConnector\Data\CreateMessageOptions;
+use GlobalModerators\AiaConnector\Requests\Conversations\Data\CreateMessageOptions;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
@@ -26,13 +26,13 @@ class CreateMessageRequest extends Request implements HasBody
      */
     public function resolveEndpoint(): string
     {
-        return 'conversation/message';
+        return '/conversation/message';
     }
 
     /**
      * @param string $message
-     * @param string $characterId
-     * @param string $userId
+     * @param int $characterId
+     * @param int $userId
      * @param CreateMessageOptions $options
      */
     public function __construct(
