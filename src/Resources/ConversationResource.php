@@ -10,4 +10,9 @@ class ConversationResource extends BaseResource
     {
         return new MessageResource($this->connector);
     }
+
+    public function characters() : CharacterResource
+    {
+        return new CharacterResource($this->connector);
+    }
 }

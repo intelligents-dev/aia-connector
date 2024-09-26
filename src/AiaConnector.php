@@ -7,9 +7,16 @@ use GlobalModerators\AiaConnector\Resources\ConversationResource;
 use Globalmoderators\AiaConnector\Resources\ImageResource;
 use Saloon\Http\Auth\TokenAuthenticator;
 use Saloon\Http\Connector;
+use Saloon\HttpSender\HttpSender;
 
 class AiaConnector extends Connector
 {
+    /**
+     * The default sender for the AIA API.
+     *
+     * @var string
+     */
+    protected string $defaultSender = HttpSender::class;
 
     /**
      * The base URL of the AIA API.
