@@ -2,14 +2,11 @@
 
 namespace GlobalModerators\AiaConnector\Requests\Images\Data;
 
-use Illuminate\Contracts\Support\Arrayable;
-use Saloon\Traits\Makeable;
-
-class CreateTextToImageOptions implements Arrayable
+class CreateTextToImageOptions extends BaseImageOptions
 {
-    use Makeable;
+    public float $loraScale;
 
-    public string $systemPrompt;
+    public string $loraWeightName;
 
     /**
      * Return the array representation of the character options.
@@ -19,19 +16,34 @@ class CreateTextToImageOptions implements Arrayable
     public function toArray(): array
     {
         return [
-            'system_prompt' => $this->systemPrompt,
+            'lora_scale' => $this->loraScale,
+            'lora_weight_name' => $this->loraWeightName,
+            ...parent::toArray(),
         ];
     }
 
     /**
-     * Set the system prompt for the character.
+     * Set the LoRA scale for the image.
      *
-     * @param string $systemPrompt
+     * @param float $loraScale
      * @return $this
      */
-    public function setSystemPrompt(string $systemPrompt): self
+    public function setLoraScale(float $loraScale): self
     {
-        $this->systemPrompt = $systemPrompt;
+        $this->loraScale = $loraScale;
+
+        return $this;
+    }
+
+    /**
+     * Set the LoRA weight name for the image.
+     *
+     * @param string $loraWeightName
+     * @return $this
+     */
+    public function setLoraWeightName(string $loraWeightName): self
+    {
+        $this->loraWeightName = $loraWeightName;
 
         return $this;
     }

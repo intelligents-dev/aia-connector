@@ -2,14 +2,11 @@
 
 namespace GlobalModerators\AiaConnector\Requests\Images\Data;
 
-use Illuminate\Contracts\Support\Arrayable;
-use Saloon\Traits\Makeable;
-
-class CreateTextToImageWithFaceSwapOptions implements Arrayable
+class CreateTextToImageWithFaceSwapOptions extends BaseImageOptions
 {
-    use Makeable;
+    public string $sourceUrl;
 
-    public string $systemPrompt;
+    public ?float $startMergeStep;
 
     /**
      * Return the array representation of the character options.
@@ -19,19 +16,34 @@ class CreateTextToImageWithFaceSwapOptions implements Arrayable
     public function toArray(): array
     {
         return [
-            'system_prompt' => $this->systemPrompt,
+            'source_url' => $this->sourceUrl,
+            'start_merge_step' => $this->startMergeStep,
+            ...parent::toArray(),
         ];
     }
 
     /**
-     * Set the system prompt for the character.
+     * Set the source URL for the image.
      *
-     * @param string $systemPrompt
+     * @param string $sourceUrl
      * @return $this
      */
-    public function setSystemPrompt(string $systemPrompt): self
+    public function setSourceUrl(string $sourceUrl): self
     {
-        $this->systemPrompt = $systemPrompt;
+        $this->sourceUrl = $sourceUrl;
+
+        return $this;
+    }
+
+    /**
+     * Set the start merge step for the image.
+     *
+     * @param float $startMergeStep
+     * @return $this
+     */
+    public function setStartMergeStep(float $startMergeStep): self
+    {
+        $this->startMergeStep = $startMergeStep;
 
         return $this;
     }
