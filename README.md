@@ -14,13 +14,18 @@ php artisan vendor:publish --provider="GlobalModerators\AiaConnector\AiaConnecto
 AIA_API_KEY=your-api-key
 ```
 
-## Characters
+
+## Conversations
 
 ### Create a character
+
+You can create a character in the AIA platform. This is necessary to send messages to the character.
+
 ```php
 use App\Models\Characters;
 use GlobalModerators\AiaConnector\AiaConnector;
 use GlobalModerators\AiaConnector\Data\CreateCharacterOptions;
+
 
 // Fetch required parameters
 $characterName = Characters::findOrFail(1)->name;
@@ -35,8 +40,6 @@ $character = AiaConnector::make()
     ->create($options);
 ));
 ```
-
-## Conversations
 
 ### Sending a message
 You can send a message to a character in a conversation. 
