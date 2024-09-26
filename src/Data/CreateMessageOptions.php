@@ -15,8 +15,7 @@ class CreateMessageOptions implements Arrayable
         public ?int $maxTokens = null,
         public ?int $topP = null,
         public ?int $topK = 0,
-    )
-    {
+    ) {
         //
     }
 

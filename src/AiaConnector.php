@@ -4,13 +4,13 @@ namespace GlobalModerators\AiaConnector;
 
 use GlobalModerators\AiaConnector\Resources\CharacterResource;
 use GlobalModerators\AiaConnector\Resources\ConversationResource;
-use Globalmoderators\AiaConnector\Resources\MessageResource;
 use Globalmoderators\AiaConnector\Resources\ImageResource;
 use Saloon\Http\Auth\TokenAuthenticator;
 use Saloon\Http\Connector;
 
 class AiaConnector extends Connector
 {
+
     /**
      * The base URL of the AIA API.
      *
@@ -32,6 +32,17 @@ class AiaConnector extends Connector
     }
 
     /**
+     * The default configuration for the AIA API.
+     * @return bool[]
+     */
+    public function defaultConfig(): array
+    {
+        return [
+            'verify' => !config('services.aia.ignore_ssl', false),
+        ];
+    }
+
+    /**
      * @return CharacterResource
      */
     public function characters(): CharacterResource
@@ -42,7 +53,7 @@ class AiaConnector extends Connector
     /**
      * @return ConversationResource
      */
-    public function converstations(): ConversationResource
+    public function conversations(): ConversationResource
     {
         return new ConversationResource($this);
     }

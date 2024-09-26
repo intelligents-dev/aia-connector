@@ -11,8 +11,7 @@ class CreateCharacterOptions implements Arrayable
 
     public function __construct(
         public string $name,
-    )
-    {
+    ) {
         //
     }
 

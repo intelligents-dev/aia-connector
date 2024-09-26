@@ -30,7 +30,7 @@ $options = CreateCharacterOptions::make()
     ->setName($characterName);
 
 // Build and send a message
-$character = (new AiaConnector())
+$character = AiaConnector::make()
     ->characters()
     ->create($options);
 ));
@@ -55,7 +55,7 @@ $options = CreateMessageOptions::make()
     ->setTemperature(0.5);
     
 // Build and send a message
-$message = (new AiaConnector())
+$message = AiaConnector::make()
     ->conversations()
     ->messages()
     ->send('Hi there!', $characterId, $userId, $options);

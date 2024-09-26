@@ -2,7 +2,6 @@
 
 namespace GlobalModerators\AiaConnector\Resources;
 
-use GlobalModerators\AiaConnector\Data\CreateMessageOptions;
 use Saloon\Http\BaseResource;
 
 class ConversationResource extends BaseResource
