@@ -2,8 +2,8 @@
 
 namespace GlobalModerators\AiaConnector\Data;
 
-use GlobalModerators\AiaConnector\Data\Concerns\Makeable;
 use Illuminate\Contracts\Support\Arrayable;
+use Saloon\Traits\Makeable;
 
 class CreateCharacterOptions implements Arrayable
 {
