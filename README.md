@@ -118,7 +118,7 @@ $options = CreateTextToImageWithFaceSwapOptions::make()
     ->setNumInferenceSteps(10)
     ->setSchedulerName('scheduler')
     ->setSourceUrl('https://source.com/image.jpg')
-    ->setStartMergeStep(5)
+    ->setStartMergeStep(5);
 
 // Build and send a message
 $response = AiaConnector::make()
