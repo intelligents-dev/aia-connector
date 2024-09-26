@@ -27,7 +27,6 @@ AIA_API_KEY=your-api-key
 You can create a character in the AIA platform. This is necessary to send messages to the character.
 
 ```php
-use App\Models\Characters;
 use GlobalModerators\AiaConnector\AiaConnector;
 use GlobalModerators\AiaConnector\Requests\Conversations\Data\CreateCharacterOptions;
 
