@@ -1,0 +1,9 @@
+<?php
+namespace GlobalModerators\AiaConnector\Resources;
+
+use Saloon\Http\BaseResource;
+
+class ImageResource extends BaseResource
+{
+
+}

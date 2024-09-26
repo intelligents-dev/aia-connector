@@ -7,5 +7,7 @@
             "Globalmoderators\\AiaConnector\\": "src/"
         }
     },
-    "require": {}
+    "require": {
+        "saloonphp/saloon": "^3.0"
+    }
 }
