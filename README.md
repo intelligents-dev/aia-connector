@@ -33,7 +33,7 @@ use GlobalModerators\AiaConnector\Requests\Conversations\Data\CreateCharacterOpt
 
 // Set options
 $options = CreateCharacterOptions::make()
-    ->setSystemPrompt('You are a beautiful woman with blonde hair.')
+    ->setSystemPrompt('You are a beautiful woman with blonde hair.');
 
 // Build and send a message
 $character = AiaConnector::make()
