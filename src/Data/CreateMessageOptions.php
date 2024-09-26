@@ -9,16 +9,21 @@ class CreateMessageOptions implements Arrayable
 {
     use Makeable;
 
-    public function __construct(
-        public ?string $systemPrompt = null,
-        public ?int $temperature = null,
-        public ?int $maxTokens = null,
-        public ?int $topP = null,
-        public ?int $topK = 0,
-    ) {
-        //
-    }
+    public ?string $systemPrompt = null;
 
+    public ?int $temperature = null;
+
+    public ?int $maxTokens = null;
+
+    public ?int $topP = null;
+
+    public ?int $topK = 0;
+
+    /**
+     * Return the array representation of the message options.
+     *
+     * @return array
+     */
     public function toArray(): array
     {
         return [

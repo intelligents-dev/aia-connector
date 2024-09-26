@@ -15,7 +15,7 @@ class MessageTest extends TestCase
      * @throws FatalRequestException
      * @throws RequestException
      */
-    function test_send_a_message_with_valid_data_gives_200_response(): void
+    public function test_send_a_message_with_valid_data_gives_200_response(): void
     {
         $mockClient = new MockClient([
             CreateMessageRequest::class => MockResponse::make(body: '', status: 200),

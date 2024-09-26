@@ -44,20 +44,20 @@ You can send a message to a character in a conversation.
 use App\Models\Characters;
 use GlobalModerators\AiaConnector\AiaConnector;
 use GlobalModerators\AiaConnector\Data\CreateMessageOptions;
-
-// Fetch required parameters
-$characterId = Characters::findOrFail(1)->aia_character_id;
-$userId = auth()->user()->id;
+// Find a character
+$character = Character::find(1);
 
 // Set options
 $options = CreateMessageOptions::make()
     ->setSystemPrompt('You are a nice girl!')
     ->setTemperature(0.5);
-    
+
 // Build and send a message
-$message = AiaConnector::make()
+$response = AiaConnector::make()
     ->conversations()
     ->messages()
-    ->send('Hi there!', $characterId, $userId, $options);
-));
+    ->send('Hi there!', $character->ai_character_id, $character->user_id, $options);
+
+// Return the JSON response
+return $response->json();
 ```

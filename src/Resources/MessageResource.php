@@ -15,17 +15,18 @@ class MessageResource extends BaseResource
      * Send a message to a character.
      *
      * @param string $message
-     * @param int $characterId
+     * @param string $characterId
      * @param int $userId
      * @param CreateMessageOptions $options
      * @return Response
+     *
      * @throws FatalRequestException
      * @throws RequestException
      */
-    public function send(string $message, int $characterId, int $userId, CreateMessageOptions $options): Response
+    public function send(string $message, string $characterId, int $userId, CreateMessageOptions $options): Response
     {
         return $this->connector->send(
-            new CreateMessageRequest($message, $characterId, $userId, $options)
+            new CreateMessageRequest($message, $characterId, $userId, $options),
         );
     }
 }
