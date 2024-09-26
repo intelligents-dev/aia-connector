@@ -27,7 +27,16 @@ class ComposerStaticInit7d8208ce77ffe5e8d5dc1b9d0b796418
             'GuzzleHttp\\Psr7\\' => 16,
             'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
-            'Globalmoderators\\AiaConnector\\' => 30,
+            'GlobalModerators\\AiaConnector\\' => 30,
+        ),
+        'D' => 
+        array (
+            'Database\\Seeders\\' => 17,
+            'Database\\Factories\\' => 19,
+        ),
+        'A' => 
+        array (
+            'App\\' => 4,
         ),
     );
 
@@ -57,9 +66,21 @@ class ComposerStaticInit7d8208ce77ffe5e8d5dc1b9d0b796418
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
         ),
-        'Globalmoderators\\AiaConnector\\' => 
+        'GlobalModerators\\AiaConnector\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
+        ),
+        'Database\\Seeders\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laravel/pint/database/seeders',
+        ),
+        'Database\\Factories\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laravel/pint/database/factories',
+        ),
+        'App\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laravel/pint/app',
         ),
     );
 

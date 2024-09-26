@@ -1,4 +1,5 @@
 <?php
+
 namespace GlobalModerators\AiaConnector;
 
 use Globalmoderators\AiaConnector\Resources\ConversationResource;
@@ -10,6 +11,7 @@ class AiaConnector extends Connector
 {
     /**
      * The base URL of the AIA API.
+     *
      * @return string
      */
     public function resolveBaseUrl(): string
@@ -19,6 +21,7 @@ class AiaConnector extends Connector
 
     /**
      * The default authenticator for the AIA API.
+     *
      * @return TokenAuthenticator
      */
     protected function defaultAuth(): TokenAuthenticator
