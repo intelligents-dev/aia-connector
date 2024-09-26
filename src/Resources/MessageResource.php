@@ -7,7 +7,7 @@ use Saloon\Http\BaseResource;
 
 class MessageResource extends BaseResource
 {
-    public function create(string $message, int $characterId, int $userId, CreateMessageOptions $options)
+    public function send(string $message, int $characterId, int $userId, CreateMessageOptions $options)
     {
         //
     }
