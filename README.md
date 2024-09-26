@@ -18,6 +18,7 @@ AIA_API_KEY=your-api-key
 
 ### Create a character
 ```php
+use App\Models\Characters;
 use GlobalModerators\AiaConnector\AiaConnector;
 use GlobalModerators\AiaConnector\Data\CreateCharacterOptions;
 
@@ -40,6 +41,7 @@ $character = (new AiaConnector())
 ### Sending a message
 You can send a message to a character in a conversation. 
 ```php
+use App\Models\Characters;
 use GlobalModerators\AiaConnector\AiaConnector;
 use GlobalModerators\AiaConnector\Data\CreateMessageOptions;
 
