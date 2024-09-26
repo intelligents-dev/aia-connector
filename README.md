@@ -44,6 +44,7 @@ You can send a message to a character in a conversation.
 use App\Models\Characters;
 use GlobalModerators\AiaConnector\AiaConnector;
 use GlobalModerators\AiaConnector\Data\CreateMessageOptions;
+
 // Find a character
 $character = Character::find(1);
 

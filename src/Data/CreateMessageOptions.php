@@ -13,11 +13,11 @@ class CreateMessageOptions implements Arrayable
 
     public ?int $temperature = null;
 
-    public ?int $maxTokens = null;
+    public ?int $maxTokens = 200;
 
-    public ?int $topP = null;
+    public ?int $topP = 1;
 
-    public ?int $topK = 0;
+    public ?int $topK = 1;
 
     /**
      * Return the array representation of the message options.
@@ -56,6 +56,10 @@ class CreateMessageOptions implements Arrayable
      */
     public function setTemperature(int $temperature): self
     {
+        if ($temperature < 0 || $temperature > 1) {
+            throw new \InvalidArgumentException('Temperature should be between 0 and 1.');
+        }
+
         $this->temperature = $temperature;
 
         return $this;
@@ -69,6 +73,10 @@ class CreateMessageOptions implements Arrayable
      */
     public function setMaxTokens(int $maxTokens): self
     {
+        if ($maxTokens < 0 || $maxTokens > 2048) {
+            throw new \InvalidArgumentException('Temperature should be between 1 and 2048.');
+        }
+
         $this->maxTokens = $maxTokens;
 
         return $this;
@@ -82,6 +90,10 @@ class CreateMessageOptions implements Arrayable
      */
     public function setTopP(int $topP): self
     {
+        if ($topP < 0 || $topP > 1) {
+            throw new \InvalidArgumentException('Top P should be between 0 and 1.');
+        }
+
         $this->topP = $topP;
 
         return $this;
@@ -95,6 +107,10 @@ class CreateMessageOptions implements Arrayable
      */
     public function setTopK(int $topK): self
     {
+        if ($topK < 0 || $topK > 2048) {
+            throw new \InvalidArgumentException('Top K should be between 1 and 2048.');
+        }
+
         $this->topK = $topK;
 
         return $this;

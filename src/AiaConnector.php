@@ -2,15 +2,20 @@
 
 namespace GlobalModerators\AiaConnector;
 
-use GlobalModerators\AiaConnector\Resources\CharacterResource;
 use GlobalModerators\AiaConnector\Resources\ConversationResource;
 use Globalmoderators\AiaConnector\Resources\ImageResource;
+use Saloon\Contracts\Body\HasBody;
 use Saloon\Http\Auth\TokenAuthenticator;
 use Saloon\Http\Connector;
 use Saloon\HttpSender\HttpSender;
+use Saloon\Traits\Body\HasJsonBody;
+use Saloon\Traits\Plugins\AcceptsJson;
 
-class AiaConnector extends Connector
+class AiaConnector extends Connector implements HasBody
 {
+    use AcceptsJson;
+    use HasJsonBody;
+
     /**
      * The default sender for the AIA API.
      *
@@ -40,21 +45,14 @@ class AiaConnector extends Connector
 
     /**
      * The default configuration for the AIA API.
+     *
      * @return bool[]
      */
     public function defaultConfig(): array
     {
         return [
-            'verify' => !config('services.aia.ignore_ssl', false),
+            'verify' => ! config('services.aia.ignore_ssl', false),
         ];
-    }
-
-    /**
-     * @return CharacterResource
-     */
-    public function characters(): CharacterResource
-    {
-        return new CharacterResource($this);
     }
 
     /**

@@ -3,15 +3,11 @@
 namespace GlobalModerators\AiaConnector\Requests\Messages;
 
 use GlobalModerators\AiaConnector\Data\CreateMessageOptions;
-use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
-use Saloon\Traits\Body\HasJsonBody;
 
-class CreateMessageRequest extends Request implements HasBody
+class CreateCharacterRequest extends Request
 {
-    use HasJsonBody;
-
     /**
      * The method to send the request with.
      *
@@ -26,7 +22,7 @@ class CreateMessageRequest extends Request implements HasBody
      */
     public function resolveEndpoint(): string
     {
-        return 'conversation/message';
+        return '/conversation/message';
     }
 
     /**
@@ -37,8 +33,8 @@ class CreateMessageRequest extends Request implements HasBody
      */
     public function __construct(
         protected string $message,
-        protected int $characterId,
-        protected int $userId,
+        protected string $characterId,
+        protected string $userId,
         protected CreateMessageOptions $options,
     ) {}
 
@@ -54,6 +50,13 @@ class CreateMessageRequest extends Request implements HasBody
             'character_id' => $this->characterId,
             'user_id' => $this->userId,
             ...$this->options->toArray(),
+        ];
+    }
+
+    protected function defaultHeaders(): array
+    {
+        return [
+            'Accept' => 'application/json',
         ];
     }
 }
