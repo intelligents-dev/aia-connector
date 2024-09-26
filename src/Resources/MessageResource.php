@@ -5,10 +5,10 @@ namespace GlobalModerators\AiaConnector\Resources;
 use GlobalModerators\AiaConnector\Data\CreateMessageOptions;
 use Saloon\Http\BaseResource;
 
-class ConversationResource extends BaseResource
+class MessageResource extends BaseResource
 {
-    public function messages(): MessageResource
+    public function create(string $message, int $characterId, int $userId, CreateMessageOptions $options)
     {
-        return new MessageResource($this->connector);
+        //
     }
 }

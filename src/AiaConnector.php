@@ -2,7 +2,9 @@
 
 namespace GlobalModerators\AiaConnector;
 
-use Globalmoderators\AiaConnector\Resources\ConversationResource;
+use GlobalModerators\AiaConnector\Resources\CharacterResource;
+use GlobalModerators\AiaConnector\Resources\ConversationResource;
+use Globalmoderators\AiaConnector\Resources\MessageResource;
 use Globalmoderators\AiaConnector\Resources\ImageResource;
 use Saloon\Http\Auth\TokenAuthenticator;
 use Saloon\Http\Connector;
@@ -30,9 +32,17 @@ class AiaConnector extends Connector
     }
 
     /**
+     * @return CharacterResource
+     */
+    public function characters(): CharacterResource
+    {
+        return new CharacterResource($this);
+    }
+
+    /**
      * @return ConversationResource
      */
-    public function conversations(): ConversationResource
+    public function converstations(): ConversationResource
     {
         return new ConversationResource($this);
     }
