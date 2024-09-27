@@ -12,7 +12,7 @@ class AiaConnectorServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom(
-            __DIR__.'/../config/aia.php', 'aia'
+            __DIR__.'/../../config/aia.php', 'aia'
         );
     }
 
@@ -22,7 +22,7 @@ class AiaConnectorServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->publishes([
-            __DIR__.'/../config/aia.php' => config_path('aia.php'),
+            __DIR__.'/../../config/aia.php' => config_path('aia.php'),
         ], 'aia-config');
     }
 }
