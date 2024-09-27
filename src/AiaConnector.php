@@ -3,7 +3,7 @@
 namespace GlobalModerators\AiaConnector;
 
 use GlobalModerators\AiaConnector\Resources\ConversationResource;
-use Globalmoderators\AiaConnector\Resources\ImageResource;
+use GlobalModerators\AiaConnector\Resources\ImageResource;
 use Saloon\Http\Auth\TokenAuthenticator;
 use Saloon\Http\Connector;
 use Saloon\HttpSender\HttpSender;
