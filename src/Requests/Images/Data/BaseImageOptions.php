@@ -58,16 +58,6 @@ abstract class BaseImageOptions implements Arrayable
     }
 
     /**
-     * BaseImageOptions constructor.
-     */
-    public function __construct()
-    {
-        $this->webhookUrls = [
-            config('aia.image_callback_url'),
-        ];
-    }
-
-    /**
      * Set the scheduler name for the image.
      *
      * @param string $schedulerName
