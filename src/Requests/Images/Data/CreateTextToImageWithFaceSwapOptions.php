@@ -6,7 +6,7 @@ class CreateTextToImageWithFaceSwapOptions extends BaseImageOptions
 {
     public string $sourceUrl;
 
-    public ?float $startMergeStep;
+    public ?float $startMergeStep = 18;
 
     /**
      * Return the array representation of the character options.
