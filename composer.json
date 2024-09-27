@@ -22,5 +22,12 @@
             "@php vendor/bin/pint --ansi",
             "@php vendor/bin/phpstan analyse --verbose --ansi"
         ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "IntelligentsDev\\AiaConnector\\Providers\\AiaConnectorServiceProvider"
+            ]
+        }
     }
 }
