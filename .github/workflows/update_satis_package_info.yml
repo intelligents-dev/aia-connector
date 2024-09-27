@@ -1,0 +1,36 @@
+name: Checks and Deploy
+
+on:
+  push:
+    branches:
+      - '**'
+    tags:
+      - '**'
+
+# Prevents running multiple actions that matches previous patterns
+concurrency:
+  group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
+  cancel-in-progress: true
+
+jobs:
+  update_satis_package_info:
+    name: Update satis package information
+
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Update package in satis
+        uses: intelligents-dev/satis/.github/actions/update-package@master
+        with:
+          aws-access-key-id: ${{ secrets.SATIS_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.SATIS_AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ vars.SATIS_AWS_REGION }}
+          aws-security-group-id: ${{ vars.SATIS_AWS_INSTANCE_SG_ID }}
+          ssh-user: ${{ vars.SATIS_USER }}
+          ssh-key: ${{ secrets.SATIS_SSH_PRIVATE_KEY }}
+          satis-host: ${{ secrets.SATIS_HOST }}
+          satis-path: ${{ vars.SATIS_PATH }}
+          repository-name: intelligents-dev/aia-connector
