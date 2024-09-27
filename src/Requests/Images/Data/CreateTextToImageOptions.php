@@ -4,9 +4,9 @@ namespace GlobalModerators\AiaConnector\Requests\Images\Data;
 
 class CreateTextToImageOptions extends BaseImageOptions
 {
-    public float $loraScale;
+    public float $loraScale = 1;
 
-    public string $loraWeightName;
+    public string $loraWeightName = 'al-faces-2.safetensors';
 
     /**
      * Return the array representation of the character options.

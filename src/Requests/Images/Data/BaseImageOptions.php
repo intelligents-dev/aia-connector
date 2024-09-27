@@ -9,21 +9,31 @@ abstract class BaseImageOptions implements Arrayable
 {
     use Makeable;
 
-    public ?string $schedulerName = null;
+    public ?string $schedulerName = 'Euler';
 
-    public ?string $modelName = null;
+    public ?string $modelName = 'bodies-xl-00001.safetensors';
 
     public string $prompt;
 
-    public ?string $negativePrompt = null;
+    /**
+     * This is only needed on model: bodies-xl-00001.safetensors, when we switch to the new model that Boris is training (expected to
+     * arrive on October 2nd), we can clear this. This model doesn't need a negative prompt. It also doesn't need Lora's probably
+     * (contact Boris for more information on this)
+     *
+     * @var string|null
+     */
+    public ?string $negativePrompt = '(tanned)2.0, (sunbath)2.0, bokeh effect, blur background, (deformed iris, deformed pupils, ' .
+        ' semi-realistic, cgi, 3d, render, sketch, cartoon, drawing, anime, mutated hands and fingers:1.4), ' .
+        '(deformed, distorted, disfigured:1.3), poorly drawn, bad anatomy, wrong anatomy, extra limb, missing limb, floating limbs, ' .
+        'disconnected limbs, mutation, mutated, ugly, disgusting, amputation, UnrealisticDream, white doors, necklace, earrings';
 
-    public ?int $numInferenceSteps = null;
+    public ?int $numInferenceSteps = 25;
 
-    public ?float $guidanceScale = null;
+    public ?float $guidanceScale = 7.5;
 
-    public ?int $height = null;
+    public ?int $height = 1024;
 
-    public ?int $width = null;
+    public ?int $width = 1024;
 
     public ?array $webhookUrls = null;
 
@@ -44,6 +54,16 @@ abstract class BaseImageOptions implements Arrayable
             'height' => $this->height,
             'width' => $this->width,
             'webhook_urls' => $this->webhookUrls,
+        ];
+    }
+
+    /**
+     * BaseImageOptions constructor.
+     */
+    public function __construct()
+    {
+        $this->webhookUrls = [
+            config('services.aia.callback_url'),
         ];
     }
 

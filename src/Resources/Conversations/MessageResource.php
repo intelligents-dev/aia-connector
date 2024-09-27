@@ -23,8 +23,12 @@ class MessageResource extends BaseResource
      * @throws FatalRequestException
      * @throws RequestException
      */
-    public function send(string $message, string $characterId, int $userId, CreateMessageOptions $options): Response
-    {
+    public function send(
+        string $message,
+        int $characterId,
+        int $userId,
+        CreateMessageOptions $options = new CreateMessageOptions(),
+    ): Response {
         return $this->connector->send(
             new CreateMessageRequest($message, $characterId, $userId, $options),
         );
