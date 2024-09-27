@@ -63,7 +63,7 @@ abstract class BaseImageOptions implements Arrayable
     public function __construct()
     {
         $this->webhookUrls = [
-            config('services.aia.image_callback_url'),
+            config('aia.image_callback_url'),
         ];
     }
 

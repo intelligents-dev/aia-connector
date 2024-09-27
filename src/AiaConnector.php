@@ -27,7 +27,7 @@ class AiaConnector extends Connector
      */
     public function resolveBaseUrl(): string
     {
-        return config('services.aia.base_url');
+        return config('aia.base_url');
     }
 
     /**
@@ -37,7 +37,7 @@ class AiaConnector extends Connector
      */
     protected function defaultAuth(): TokenAuthenticator
     {
-        return new TokenAuthenticator(config('services.aia.token'));
+        return new TokenAuthenticator(config('aia.token'));
     }
 
     /**
@@ -48,7 +48,7 @@ class AiaConnector extends Connector
     public function defaultConfig(): array
     {
         return [
-            'verify' => ! config('services.aia.ignore_ssl', false),
+            'verify' => ! config('aia.ignore_ssl', false),
         ];
     }
 
