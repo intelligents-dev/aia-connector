@@ -1,6 +1,6 @@
 <?php
 
-namespace GlobalModerators\AiaConnector\Requests\Images\Data;
+namespace IntelligentsDev\AiaConnector\Requests\Images\Data;
 
 class CreateTextToImageOptions extends BaseImageOptions
 {

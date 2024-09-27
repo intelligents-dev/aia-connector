@@ -1,9 +1,9 @@
 <?php
 
-namespace GlobalModerators\AiaConnector;
+namespace IntelligentsDev\AiaConnector;
 
-use GlobalModerators\AiaConnector\Resources\ConversationResource;
-use GlobalModerators\AiaConnector\Resources\ImageResource;
+use IntelligentsDev\AiaConnector\Resources\ConversationResource;
+use IntelligentsDev\AiaConnector\Resources\ImageResource;
 use Saloon\Http\Auth\TokenAuthenticator;
 use Saloon\Http\Connector;
 use Saloon\HttpSender\HttpSender;

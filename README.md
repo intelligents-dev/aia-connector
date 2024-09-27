@@ -5,7 +5,7 @@
 ### Install the package
 
 ```bash
-composer require globalmoderators/aia-connector
+composer require intelligents-dev/aia-connector
 ```
 
 ### Publish the configuration
@@ -33,8 +33,8 @@ AIA_IMAGE_CALLBACK_URL=<the url to the callback endpoint for image generation>
 You can create a character in the AIA platform. This is necessary to send messages to the character.
 
 ```php
-use GlobalModerators\AiaConnector\AiaConnector;
-use GlobalModerators\AiaConnector\Requests\Conversations\Data\CreateCharacterOptions;
+use IntelligentsDev\AiaConnector\AiaConnector;
+use IntelligentsDev\AiaConnector\Requests\Conversations\Data\CreateCharacterOptions;
 
 // Set options
 $options = CreateCharacterOptions::make()
@@ -56,8 +56,8 @@ You can send a message to a character in a conversation.
 
 ```php
 use App\Models\Characters;
-use GlobalModerators\AiaConnector\AiaConnector;
-use GlobalModerators\AiaConnector\Requests\Conversations\Data\CreateMessageOptions;
+use IntelligentsDev\AiaConnector\AiaConnector;
+use IntelligentsDev\AiaConnector\Requests\Conversations\Data\CreateMessageOptions;
 
 // Find a character
 $character = Character::find(1);
@@ -85,8 +85,8 @@ return $response->json();
 ## Create text to image
 
 ```php
-use GlobalModerators\AiaConnector\AiaConnector;
-use GlobalModerators\AiaConnector\Requests\Images\Data\CreateTextToImageOptions;
+use IntelligentsDev\AiaConnector\AiaConnector;
+use IntelligentsDev\AiaConnector\Requests\Images\Data\CreateTextToImageOptions;
 
 // Set options
 $options = CreateTextToImageOptions::make()
@@ -113,8 +113,8 @@ return $response->json();
 ## Create text to image with face swap
 
 ```php
-use GlobalModerators\AiaConnector\AiaConnector;
-use GlobalModerators\AiaConnector\Requests\Images\Data\CreateTextToImageWithFaceSwapOptions;
+use IntelligentsDev\AiaConnector\AiaConnector;
+use IntelligentsDev\AiaConnector\Requests\Images\Data\CreateTextToImageWithFaceSwapOptions;
 
 // Set options
 $options = CreateTextToImageWithFaceSwapOptions::make()

@@ -1,9 +1,9 @@
 <?php
 
-namespace GlobalModerators\AiaConnector\Resources\Conversations;
+namespace IntelligentsDev\AiaConnector\Resources\Conversations;
 
-use GlobalModerators\AiaConnector\Requests\Conversations\CreateMessageRequest;
-use GlobalModerators\AiaConnector\Requests\Conversations\Data\CreateMessageOptions;
+use IntelligentsDev\AiaConnector\Requests\Conversations\CreateMessageRequest;
+use IntelligentsDev\AiaConnector\Requests\Conversations\Data\CreateMessageOptions;
 use Saloon\Exceptions\Request\FatalRequestException;
 use Saloon\Exceptions\Request\RequestException;
 use Saloon\Http\BaseResource;

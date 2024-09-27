@@ -1,6 +1,6 @@
 <?php
 
-namespace GlobalModerators\AiaConnector\Requests\Images\Data;
+namespace IntelligentsDev\AiaConnector\Requests\Images\Data;
 
 use Illuminate\Contracts\Support\Arrayable;
 use Saloon\Traits\Makeable;
@@ -63,7 +63,7 @@ abstract class BaseImageOptions implements Arrayable
     public function __construct()
     {
         $this->webhookUrls = [
-            config('services.aia.callback_url'),
+            config('services.aia.image_callback_url'),
         ];
     }
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace GlobalModerators\AiaConnector\Resources\Images;
+namespace IntelligentsDev\AiaConnector\Resources\Images;
 
-use GlobalModerators\AiaConnector\Requests\Images\CreateTextToImageRequest;
-use GlobalModerators\AiaConnector\Requests\Images\Data\CreateTextToImageOptions;
+use IntelligentsDev\AiaConnector\Requests\Images\CreateTextToImageRequest;
+use IntelligentsDev\AiaConnector\Requests\Images\Data\CreateTextToImageOptions;
 use Saloon\Exceptions\Request\FatalRequestException;
 use Saloon\Exceptions\Request\RequestException;
 use Saloon\Http\BaseResource;

@@ -1,9 +1,9 @@
 <?php
 
-namespace GlobalModerators\AiaConnector\Resources;
+namespace IntelligentsDev\AiaConnector\Resources;
 
-use GlobalModerators\AiaConnector\Resources\Conversations\CharacterResource;
-use GlobalModerators\AiaConnector\Resources\Conversations\MessageResource;
+use IntelligentsDev\AiaConnector\Resources\Conversations\CharacterResource;
+use IntelligentsDev\AiaConnector\Resources\Conversations\MessageResource;
 use Saloon\Http\BaseResource;
 
 class ConversationResource extends BaseResource

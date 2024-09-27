@@ -1,9 +1,9 @@
 <?php
 
-namespace GlobalModerators\AiaConnector\Resources;
+namespace IntelligentsDev\AiaConnector\Resources;
 
-use GlobalModerators\AiaConnector\Resources\Images\TextToImageResource;
-use GlobalModerators\AiaConnector\Resources\Images\TextToImageWithFaceSwapResource;
+use IntelligentsDev\AiaConnector\Resources\Images\TextToImageResource;
+use IntelligentsDev\AiaConnector\Resources\Images\TextToImageWithFaceSwapResource;
 use Saloon\Http\BaseResource;
 
 class ImageResource extends BaseResource

@@ -21,8 +21,8 @@ class ComposerStaticInit7d8208ce77ffe5e8d5dc1b9d0b796418
         'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
         'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
         '35a6ad97d21e794e7e22a17d806652e4' => __DIR__ . '/..' . '/nunomaduro/termwind/src/Functions.php',
-        '1ff88ee2daa64f07d9a89cd819aa198e' => __DIR__ . '/..' . '/orchestra/testbench-core/src/functions.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
+        '1ff88ee2daa64f07d9a89cd819aa198e' => __DIR__ . '/..' . '/orchestra/testbench-core/src/functions.php',
         '2203a247e6fda86070a5e4e07aed533a' => __DIR__ . '/..' . '/symfony/clock/Resources/now.php',
         '09f6b20656683369174dd6fa83b7e5fb' => __DIR__ . '/..' . '/symfony/polyfill-uuid/bootstrap.php',
         'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
@@ -59,9 +59,6 @@ class ComposerStaticInit7d8208ce77ffe5e8d5dc1b9d0b796418
         ),
         'W' => 
         array (
-            'Workbench\\Database\\Seeders\\' => 27,
-            'Workbench\\Database\\Factories\\' => 29,
-            'Workbench\\App\\' => 14,
             'Whoops\\' => 7,
             'Webmozart\\Assert\\' => 17,
         ),
@@ -106,6 +103,8 @@ class ComposerStaticInit7d8208ce77ffe5e8d5dc1b9d0b796418
             'Spatie\\Macroable\\' => 17,
             'Spatie\\LaravelRay\\' => 18,
             'Spatie\\Backtrace\\' => 17,
+            'Saloon\\HttpSender\\Tests\\' => 24,
+            'Saloon\\HttpSender\\' => 18,
             'Saloon\\' => 7,
         ),
         'R' => 
@@ -221,18 +220,6 @@ class ComposerStaticInit7d8208ce77ffe5e8d5dc1b9d0b796418
         'ZBateson\\MailMimeParser\\' => 
         array (
             0 => __DIR__ . '/..' . '/zbateson/mail-mime-parser/src',
-        ),
-        'Workbench\\Database\\Seeders\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/workbench/database/seeders',
-        ),
-        'Workbench\\Database\\Factories\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/workbench/database/factories',
-        ),
-        'Workbench\\App\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/workbench/app',
         ),
         'Whoops\\' => 
         array (
@@ -385,6 +372,14 @@ class ComposerStaticInit7d8208ce77ffe5e8d5dc1b9d0b796418
         'Spatie\\Backtrace\\' => 
         array (
             0 => __DIR__ . '/..' . '/spatie/backtrace/src',
+        ),
+        'Saloon\\HttpSender\\Tests\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/saloonphp/laravel-http-sender/tests',
+        ),
+        'Saloon\\HttpSender\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/saloonphp/laravel-http-sender/src',
         ),
         'Saloon\\' => 
         array (

@@ -1,12 +1,12 @@
 {
-    "name": "globalmoderators/aia-connector",
+    "name": "intelligents-dev/aia-connector",
     "description": "SDK to communicatie with the AIA-service",
     "type": "library",
     "minimum-stability": "dev",
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "GlobalModerators\\AiaConnector\\": "src/"
+            "IntelligentsDev\\AiaConnector\\": "src/"
         }
     },
     "require": {
@@ -15,8 +15,7 @@
     },
     "require-dev": {
         "laravel/pint": "^1.18",
-        "phpunit/phpunit": "^11.3",
-        "orchestra/testbench": "^9.5"
+        "phpunit/phpunit": "^11.3"
     },
     "scripts": {
         "lint": [

@@ -1,9 +1,9 @@
 <?php
 
-namespace GlobalModerators\AiaConnector\Resources\Images;
+namespace IntelligentsDev\AiaConnector\Resources\Images;
 
-use GlobalModerators\AiaConnector\Requests\Images\CreateTextToImageWithFaceSwapRequest;
-use GlobalModerators\AiaConnector\Requests\Images\Data\CreateTextToImageWithFaceSwapOptions;
+use IntelligentsDev\AiaConnector\Requests\Images\CreateTextToImageWithFaceSwapRequest;
+use IntelligentsDev\AiaConnector\Requests\Images\Data\CreateTextToImageWithFaceSwapOptions;
 use Saloon\Exceptions\Request\FatalRequestException;
 use Saloon\Exceptions\Request\RequestException;
 use Saloon\Http\BaseResource;

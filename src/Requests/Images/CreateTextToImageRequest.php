@@ -1,8 +1,8 @@
 <?php
 
-namespace GlobalModerators\AiaConnector\Requests\Images;
+namespace IntelligentsDev\AiaConnector\Requests\Images;
 
-use GlobalModerators\AiaConnector\Requests\Images\Data\CreateTextToImageOptions;
+use IntelligentsDev\AiaConnector\Requests\Images\Data\CreateTextToImageOptions;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;

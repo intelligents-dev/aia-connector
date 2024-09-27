@@ -1,8 +1,8 @@
 <?php
 
-namespace GlobalModerators\AiaConnector\Requests\Conversations;
+namespace IntelligentsDev\AiaConnector\Requests\Conversations;
 
-use GlobalModerators\AiaConnector\Requests\Conversations\Data\CreateMessageOptions;
+use IntelligentsDev\AiaConnector\Requests\Conversations\Data\CreateMessageOptions;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;

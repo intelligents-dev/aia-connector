@@ -1,8 +1,8 @@
 <?php
 
-use GlobalModerators\AiaConnector\AiaConnector;
-use GlobalModerators\AiaConnector\Data\CreateMessageOptions;
-use GlobalModerators\AiaConnector\Requests\Messages\CreateMessageRequest;
+use IntelligentsDev\AiaConnector\AiaConnector;
+use IntelligentsDev\AiaConnector\Requests\Conversations\CreateMessageRequest;
+use IntelligentsDev\AiaConnector\Requests\Conversations\Data\CreateMessageOptions;
 use Orchestra\Testbench\TestCase;
 use Saloon\Exceptions\Request\FatalRequestException;
 use Saloon\Exceptions\Request\RequestException;
