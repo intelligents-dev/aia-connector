@@ -10,14 +10,20 @@ composer require globalmoderators/aia-connector
 
 ### Publish the configuration
 
-```bash
-php artisan vendor:publish --provider="GlobalModerators\AiaConnector\AiaConnectorServiceProvider" --tag="config"
+Add the following to your `config/services.php` file and set the .env values accordingly.
+
+```php
+ 'aia' => [
+    'base_url' => env('AIA_URL'),
+    'token' => env('AIA_TOKEN'),
+    'image_callback_url' => env('AIA_IMAGE_CALLBACK_URL'),
+    'ignore_ssl' => env('AIA_IGNORE_SSL', false),
+],
 ```
-
-### Set the key in your `.env` file
-
 ```dotenv
-AIA_API_KEY=your-api-key
+AIA_URL=<the url of the AIA-service API>
+AIA_TOKEN=<the token to authenticate with the AIA-service API>
+AIA_IMAGE_CALLBACK_URL=<the url to the callback endpoint for image generation>
 ```
 
 ## Conversations
@@ -39,6 +45,9 @@ $character = AiaConnector::make()
     ->characters()
     ->create($options);
 ));
+
+// Return the JSON response
+return $response->json();
 ```
 
 ### Sending a message
