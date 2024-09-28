@@ -11,13 +11,13 @@ class CreateMessageOptions implements Arrayable
 
     public ?string $systemPrompt = null;
 
-    public ?int $temperature = null;
+    public ?float $temperature = null;
 
     public ?int $maxTokens = 200;
 
-    public ?int $topP = 1;
+    public ?float $topP = 1;
 
-    public ?int $topK = 1;
+    public ?float $topK = 1;
 
     /**
      * Return the array representation of the message options.
@@ -51,10 +51,10 @@ class CreateMessageOptions implements Arrayable
     /**
      * Set the temperature for the message.
      *
-     * @param int $temperature
+     * @param float $temperature
      * @return $this
      */
-    public function setTemperature(int $temperature): self
+    public function setTemperature(float $temperature): self
     {
         if ($temperature < 0 || $temperature > 1) {
             throw new \InvalidArgumentException('Temperature should be between 0 and 1.');
@@ -85,10 +85,10 @@ class CreateMessageOptions implements Arrayable
     /**
      * Set the top p for the message.
      *
-     * @param int $topP
+     * @param float $topP
      * @return $this
      */
-    public function setTopP(int $topP): self
+    public function setTopP(float $topP): self
     {
         if ($topP < 0 || $topP > 1) {
             throw new \InvalidArgumentException('Top P should be between 0 and 1.');
@@ -102,10 +102,10 @@ class CreateMessageOptions implements Arrayable
     /**
      * Set the top k for the message.
      *
-     * @param int $topK
+     * @param float $topK
      * @return $this
      */
-    public function setTopK(int $topK): self
+    public function setTopK(float $topK): self
     {
         if ($topK < 0 || $topK > 2048) {
             throw new \InvalidArgumentException('Top K should be between 1 and 2048.');
