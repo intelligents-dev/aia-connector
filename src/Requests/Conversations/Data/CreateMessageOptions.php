@@ -56,8 +56,8 @@ class CreateMessageOptions implements Arrayable
      */
     public function setTemperature(float $temperature): self
     {
-        if ($temperature < 0 || $temperature > 1) {
-            throw new \InvalidArgumentException('Temperature should be between 0 and 1.');
+        if ($temperature < 0 || $temperature > 2) {
+            throw new \InvalidArgumentException('Temperature should be between 0 and 2.');
         }
 
         $this->temperature = $temperature;
