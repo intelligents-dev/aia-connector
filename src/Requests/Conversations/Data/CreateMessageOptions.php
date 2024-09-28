@@ -108,7 +108,7 @@ class CreateMessageOptions implements Arrayable
     public function setTopK(float $topK): self
     {
         if ($topK < 0 || $topK > 2048) {
-            throw new \InvalidArgumentException('Top K should be between 1 and 2048.');
+            throw new \InvalidArgumentException('Top K should be between 0 and 2048.');
         }
 
         $this->topK = $topK;
