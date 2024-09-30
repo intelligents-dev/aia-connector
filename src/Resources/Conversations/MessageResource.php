@@ -15,7 +15,7 @@ class MessageResource extends BaseResource
      * Send a message to a character.
      *
      * @param string $message
-     * @param string $characterId
+     * @param int $characterId
      * @param int $userId
      * @param CreateMessageOptions $options
      * @return Response

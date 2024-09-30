@@ -11,7 +11,7 @@ class CreateMessageOptions implements Arrayable
 
     public ?string $systemPrompt = null;
 
-    public ?float $temperature = null;
+    public ?float $temperature = 0;
 
     public ?int $maxTokens = 200;
 
