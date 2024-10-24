@@ -2,19 +2,37 @@
 
 namespace IntelligentsDev\AiaConnector\Resources;
 
-use IntelligentsDev\AiaConnector\Resources\Conversations\CharacterResource;
-use IntelligentsDev\AiaConnector\Resources\Conversations\MessageResource;
+
+use IntelligentsDev\AiaConnector\Requests\Conversations\CreateConversationRequest;
+use IntelligentsDev\AiaConnector\Requests\Conversations\Data\CreateConversationOptions;
+use Saloon\Exceptions\Request\FatalRequestException;
+use Saloon\Exceptions\Request\RequestException;
 use Saloon\Http\BaseResource;
+use Saloon\Http\Response;
 
 class ConversationResource extends BaseResource
 {
-    public function messages(): MessageResource
+    public function messages(): ConversationMessageResource
     {
-        return new MessageResource($this->connector);
+        return new ConversationMessageResource($this->connector);
     }
 
-    public function characters(): CharacterResource
+    /**
+     * Create a conversation.
+     *
+     * @param CreateConversationOptions $options
+     * @return Response
+     *
+     * @throws FatalRequestException
+     * @throws RequestException
+     */
+    public function create(
+
+        CreateConversationOptions $options = new CreateConversationOptions(),
+    ): Response
     {
-        return new CharacterResource($this->connector);
+        return $this->connector->send(
+            new CreateConversationRequest($options),
+        );
     }
 }

@@ -1,14 +1,15 @@
 <?php
 
-namespace IntelligentsDev\AiaConnector\Requests\Conversations;
+namespace IntelligentsDev\AiaConnector\Requests\Images;
 
-use IntelligentsDev\AiaConnector\Requests\Conversations\Data\CreateMessageOptions;
+use IntelligentsDev\AiaConnector\Requests\Images\Data\CreateTextToImageWithFaceSwapOptions;
+use IntelligentsDev\AiaConnector\Requests\Images\Data\TextToImageWithFaceSwapOptions;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Traits\Body\HasJsonBody;
 
-class CreateMessageRequest extends Request implements HasBody
+class TextToImageWithFaceSwapRequest extends Request implements HasBody
 {
     use HasJsonBody;
 
@@ -26,20 +27,16 @@ class CreateMessageRequest extends Request implements HasBody
      */
     public function resolveEndpoint(): string
     {
-        return '/conversation/message';
+        return '/image/text-to-image-with-face-swap';
     }
 
     /**
-     * @param string $message
-     * @param int $characterId
-     * @param int $userId
-     * @param CreateMessageOptions $options
+     * @param CreateTextToImageWithFaceSwapOptions $options
      */
     public function __construct(
-        protected string $message,
-        protected int $characterId,
-        protected int $userId,
-        protected CreateMessageOptions $options,
+        protected string $prompt,
+        protected string $sourceUrl,
+        protected TextToImageWithFaceSwapOptions $options,
     ) {}
 
     /**
@@ -50,10 +47,9 @@ class CreateMessageRequest extends Request implements HasBody
     protected function defaultBody(): array
     {
         return [
-            'message' => $this->message,
-            'character_id' => $this->characterId,
-            'user_id' => $this->userId,
             ...$this->options->toArray(),
+            'prompt' => $this->prompt,
+            'source_url' => $this->sourceUrl,
         ];
     }
 }

@@ -1,14 +1,14 @@
 <?php
 
-namespace IntelligentsDev\AiaConnector\Requests\Images;
+namespace IntelligentsDev\AiaConnector\Requests\Conversations;
 
-use IntelligentsDev\AiaConnector\Requests\Images\Data\CreateTextToImageWithFaceSwapOptions;
+use IntelligentsDev\AiaConnector\Requests\Conversations\Data\CreateConversationOptions;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Traits\Body\HasJsonBody;
 
-class CreateTextToImageWithFaceSwapRequest extends Request implements HasBody
+class CreateConversationRequest extends Request implements HasBody
 {
     use HasJsonBody;
 
@@ -26,17 +26,15 @@ class CreateTextToImageWithFaceSwapRequest extends Request implements HasBody
      */
     public function resolveEndpoint(): string
     {
-        return '/image/text-to-image-with-face-swap';
+        return '/conversation';
     }
 
     /**
-     * @param CreateTextToImageWithFaceSwapOptions $options
+     * @param CreateConversationOptions $options
      */
     public function __construct(
-        protected CreateTextToImageWithFaceSwapOptions $options,
-    ) {
-        //
-    }
+        protected CreateConversationOptions $options,
+    ) {}
 
     /**
      * The default body for the request.

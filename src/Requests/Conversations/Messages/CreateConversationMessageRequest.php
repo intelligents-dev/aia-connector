@@ -1,14 +1,14 @@
 <?php
 
-namespace IntelligentsDev\AiaConnector\Requests\Conversations;
+namespace IntelligentsDev\AiaConnector\Requests\Conversations\Messages;
 
-use IntelligentsDev\AiaConnector\Requests\Conversations\Data\CreateCharacterOptions;
+use IntelligentsDev\AiaConnector\Requests\Conversations\Messages\Data\CreateConversationMessageOptions;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Traits\Body\HasJsonBody;
 
-class CreateCharacterRequest extends Request implements HasBody
+class CreateConversationMessageRequest extends Request implements HasBody
 {
     use HasJsonBody;
 
@@ -26,17 +26,19 @@ class CreateCharacterRequest extends Request implements HasBody
      */
     public function resolveEndpoint(): string
     {
-        return '/conversation/character';
+        return sprintf('/conversation/%d/message', $this->conversationId);
     }
 
     /**
+     * @param int $conversationId
+     * @param string $content
      * @param CreateCharacterOptions $options
      */
     public function __construct(
-        protected CreateCharacterOptions $options,
-    ) {
-        //
-    }
+        protected int $conversationId,
+        protected string $content,
+        protected CreateConversationMessageOptions $options,
+    ) {}
 
     /**
      * The default body for the request.
@@ -45,6 +47,9 @@ class CreateCharacterRequest extends Request implements HasBody
      */
     protected function defaultBody(): array
     {
-        return $this->options->toArray();
+        return [
+            'content' => $this->content,
+            ...$this->options->toArray(),
+        ];
     }
 }

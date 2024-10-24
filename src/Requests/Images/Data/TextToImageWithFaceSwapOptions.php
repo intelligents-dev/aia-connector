@@ -2,11 +2,9 @@
 
 namespace IntelligentsDev\AiaConnector\Requests\Images\Data;
 
-class CreateTextToImageWithFaceSwapOptions extends BaseImageOptions
+class TextToImageWithFaceSwapOptions extends ImageOptions
 {
-    public string $sourceUrl;
-
-    public ?float $startMergeStep = 18;
+    public ?float $startMergeStep = null;
 
     /**
      * Return the array representation of the character options.
@@ -16,23 +14,9 @@ class CreateTextToImageWithFaceSwapOptions extends BaseImageOptions
     public function toArray(): array
     {
         return [
-            'source_url' => $this->sourceUrl,
             'start_merge_step' => $this->startMergeStep,
             ...parent::toArray(),
         ];
-    }
-
-    /**
-     * Set the source URL for the image.
-     *
-     * @param string $sourceUrl
-     * @return $this
-     */
-    public function setSourceUrl(string $sourceUrl): self
-    {
-        $this->sourceUrl = $sourceUrl;
-
-        return $this;
     }
 
     /**

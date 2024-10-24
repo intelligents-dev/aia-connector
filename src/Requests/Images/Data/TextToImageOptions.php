@@ -2,14 +2,14 @@
 
 namespace IntelligentsDev\AiaConnector\Requests\Images\Data;
 
-class CreateTextToImageOptions extends BaseImageOptions
+class TextToImageOptions extends ImageOptions
 {
-    public float $loraScale = 1;
+    public ?float $loraScale = null;
 
-    public string $loraWeightName = 'al-faces-2.safetensors';
+    public ?string $loraWeightName = null;
 
     /**
-     * Return the array representation of the character options.
+     * Return the array representation of the text to image options.
      *
      * @return string[]
      */

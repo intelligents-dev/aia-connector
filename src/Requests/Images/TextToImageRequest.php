@@ -3,12 +3,13 @@
 namespace IntelligentsDev\AiaConnector\Requests\Images;
 
 use IntelligentsDev\AiaConnector\Requests\Images\Data\CreateTextToImageOptions;
+use IntelligentsDev\AiaConnector\Requests\Images\Data\TextToImageOptions;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Traits\Body\HasJsonBody;
 
-class CreateTextToImageRequest extends Request implements HasBody
+class TextToImageRequest extends Request implements HasBody
 {
     use HasJsonBody;
 
@@ -30,13 +31,12 @@ class CreateTextToImageRequest extends Request implements HasBody
     }
 
     /**
-     * @param CreateTextToImageOptions $options
+     * @param TextToImageOptions $options
      */
     public function __construct(
-        protected CreateTextToImageOptions $options,
-    ) {
-        //
-    }
+        protected string $prompt,
+        protected TextToImageOptions $options,
+    ) {}
 
     /**
      * The default body for the request.
@@ -45,6 +45,9 @@ class CreateTextToImageRequest extends Request implements HasBody
      */
     protected function defaultBody(): array
     {
-        return $this->options->toArray();
+        return [
+            'prompt' => $this->prompt,
+            ...$this->options->toArray(),
+        ];
     }
 }
