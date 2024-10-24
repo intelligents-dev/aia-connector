@@ -28,21 +28,21 @@ AIA_IMAGE_CALLBACK_URL=<the url to the callback endpoint for image generation>
 
 ## Conversations
 
-### Create a character
+### Create a conversation
 
-You can create a character in the AIA platform. This is necessary to send messages to the character.
+You can create a conversation in the AIA platform. This is necessary to send messages to a character.
 
 ```php
 use IntelligentsDev\AiaConnector\AiaConnector;
-use IntelligentsDev\AiaConnector\Requests\Conversations\Data\CreateCharacterOptions;
+use IntelligentsDev\AiaConnector\Requests\Conversations\Data\CreateConversationOptions;
 
 // Set options
-$options = CreateCharacterOptions::make()
+$options = CreateConversationOptions::make()
     ->setSystemPrompt('You are a beautiful woman with blonde hair.');
 
 // Build and send request
-$character = AiaConnector::make()
-    ->characters()
+$conversation = AiaConnector::make()
+    ->conversations()
     ->create($options);
 ));
 
@@ -55,15 +55,15 @@ return $response->json();
 You can send a message to a character in a conversation.
 
 ```php
-use App\Models\Characters;
+use App\Models\Conversation;
 use IntelligentsDev\AiaConnector\AiaConnector;
-use IntelligentsDev\AiaConnector\Requests\Conversations\Data\CreateMessageOptions;
+use IntelligentsDev\AiaConnector\Requests\Conversations\Messages\Data\CreateConversationMessageOptions;
 
-// Find a character
-$character = Character::find(1);
+// Find a conversation
+$conversation = Conversation::find(1);
 
 // Set options
-$options = CreateMessageOptions::make()
+$options = CreateConversationMessageOptions::make()
     ->setSystemPrompt('You are a nice girl!')
     ->setTemperature(0.5)
     ->setMaxTokens(100)
@@ -74,7 +74,7 @@ $options = CreateMessageOptions::make()
 $response = AiaConnector::make()
     ->conversations()
     ->messages()
-    ->send('Hi there!', $character->ai_character_id, $character->user_id, $options);
+    ->create($conversation->ai_conversation_id, 'Hi there!', $options);
 
 // Return the JSON response
 return $response->json();

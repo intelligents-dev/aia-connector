@@ -5,15 +5,13 @@ namespace IntelligentsDev\AiaConnector\Requests\Images\Data;
 use Illuminate\Contracts\Support\Arrayable;
 use Saloon\Traits\Makeable;
 
-abstract class BaseImageOptions implements Arrayable
+abstract class ImageOptions implements Arrayable
 {
     use Makeable;
 
-    public ?string $schedulerName = 'Euler';
+    public ?string $schedulerName = null;
 
-    public ?string $modelName = 'bodies-xl-00001.safetensors';
-
-    public string $prompt;
+    public ?string $modelName = null;
 
     /**
      * This is only needed on model: bodies-xl-00001.safetensors, when we switch to the new model that Boris is training (expected to
@@ -22,18 +20,15 @@ abstract class BaseImageOptions implements Arrayable
      *
      * @var string|null
      */
-    public ?string $negativePrompt = '(tanned)2.0, (sunbath)2.0, bokeh effect, blur background, (deformed iris, deformed pupils, ' .
-        ' semi-realistic, cgi, 3d, render, sketch, cartoon, drawing, anime, mutated hands and fingers:1.4), ' .
-        '(deformed, distorted, disfigured:1.3), poorly drawn, bad anatomy, wrong anatomy, extra limb, missing limb, floating limbs, ' .
-        'disconnected limbs, mutation, mutated, ugly, disgusting, amputation, UnrealisticDream, white doors, necklace, earrings';
+    public ?string $negativePrompt = null;
 
-    public ?int $numInferenceSteps = 25;
+    public ?int $numInferenceSteps = null;
 
-    public ?float $guidanceScale = 7.5;
+    public ?float $guidanceScale = null;
 
-    public ?int $height = 1024;
+    public ?int $height = null;
 
-    public ?int $width = 1024;
+    public ?int $width = null;
 
     public ?array $webhookUrls = null;
 
@@ -47,7 +42,6 @@ abstract class BaseImageOptions implements Arrayable
         return [
             'scheduler_name' => $this->schedulerName,
             'model_name' => $this->modelName,
-            'prompt' => $this->prompt,
             'negative_prompt' => $this->negativePrompt,
             'num_inference_steps' => $this->numInferenceSteps,
             'guidance_scale' => $this->guidanceScale,
@@ -79,19 +73,6 @@ abstract class BaseImageOptions implements Arrayable
     public function setModelName(string $modelName): self
     {
         $this->modelName = $modelName;
-
-        return $this;
-    }
-
-    /**
-     * Set the prompt for the image.
-     *
-     * @param string $prompt
-     * @return $this
-     */
-    public function setPrompt(string $prompt): self
-    {
-        $this->prompt = $prompt;
 
         return $this;
     }
