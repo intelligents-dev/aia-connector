@@ -45,8 +45,6 @@ class UpdateConversationMessageRequest extends Request implements HasBody
      */
     protected function defaultBody(): array
     {
-        return [
-            ...$this->options->toArray(),
-        ];
+        return [$this->options->toArray()];
     }
 }
