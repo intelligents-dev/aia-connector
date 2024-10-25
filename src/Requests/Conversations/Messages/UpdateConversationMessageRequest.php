@@ -2,13 +2,13 @@
 
 namespace IntelligentsDev\AiaConnector\Requests\Conversations\Messages;
 
-use IntelligentsDev\AiaConnector\Requests\Conversations\Messages\Data\CreateConversationMessageOptions;
+use IntelligentsDev\AiaConnector\Requests\Conversations\Messages\Data\UpdateConversationMessageOptions;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Traits\Body\HasJsonBody;
 
-class CreateConversationMessageRequest extends Request implements HasBody
+class UpdateConversationMessageRequest extends Request implements HasBody
 {
     use HasJsonBody;
 
@@ -31,13 +31,11 @@ class CreateConversationMessageRequest extends Request implements HasBody
 
     /**
      * @param int $conversationId
-     * @param string $content
-     * @param CreateConversationMessageOptions $options
+     * @param UpdateConversationMessageOptions $options
      */
     public function __construct(
         protected int $conversationId,
-        protected string $content,
-        protected CreateConversationMessageOptions $options,
+        protected UpdateConversationMessageOptions $options,
     ) {}
 
     /**
@@ -47,9 +45,6 @@ class CreateConversationMessageRequest extends Request implements HasBody
      */
     protected function defaultBody(): array
     {
-        return [
-            'content' => $this->content,
-            ...$this->options->toArray(),
-        ];
+        return $this->options->toArray();
     }
 }

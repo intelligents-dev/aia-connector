@@ -2,9 +2,10 @@
 
 namespace IntelligentsDev\AiaConnector\Resources;
 
-
 use IntelligentsDev\AiaConnector\Requests\Conversations\CreateConversationRequest;
 use IntelligentsDev\AiaConnector\Requests\Conversations\Data\CreateConversationOptions;
+use IntelligentsDev\AiaConnector\Requests\Conversations\Data\UpdateConversationOptions;
+use IntelligentsDev\AiaConnector\Requests\Conversations\UpdateConversationRequest;
 use Saloon\Exceptions\Request\FatalRequestException;
 use Saloon\Exceptions\Request\RequestException;
 use Saloon\Http\BaseResource;
@@ -27,12 +28,25 @@ class ConversationResource extends BaseResource
      * @throws RequestException
      */
     public function create(
-
         CreateConversationOptions $options = new CreateConversationOptions(),
-    ): Response
-    {
-        return $this->connector->send(
-            new CreateConversationRequest($options),
-        );
+    ): Response {
+        return $this->connector->send(new CreateConversationRequest($options));
+    }
+
+    /**
+     * Update a conversation.
+     *
+     * @param int $conversationId
+     * @param UpdateConversationOptions $options
+     * @return Response
+     *
+     * @throws FatalRequestException
+     * @throws RequestException
+     */
+    public function update(
+        int $conversationId,
+        UpdateConversationOptions $options = new UpdateConversationOptions(),
+    ): Response {
+        return $this->connector->send(new UpdateConversationRequest($conversationId, $options));
     }
 }
