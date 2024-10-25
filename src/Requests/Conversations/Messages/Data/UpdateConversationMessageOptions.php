@@ -10,6 +10,8 @@ class UpdateConversationMessageOptions implements Arrayable
 {
     use Makeable;
 
+    public ?string $content = null;
+
     public ?string $systemPrompt = null;
 
     public ?string $prefixPrompt = null;
@@ -42,7 +44,20 @@ class UpdateConversationMessageOptions implements Arrayable
             'top_k' => $this->topK,
             'type' => $this->type?->value,
             'language_model' => $this->languageModel,
+            'content' => $this->content,
         ];
+    }
+
+    /**
+     * Set content for message
+     * @param string|null $content
+     * @return $this
+     */
+    public function setContent(?string $content): self
+    {
+        $this->content = $content;
+
+        return $this;
     }
 
     /**

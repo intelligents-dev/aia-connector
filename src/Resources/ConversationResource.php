@@ -36,7 +36,7 @@ class ConversationResource extends BaseResource
     /**
      * Update a conversation.
      *
-     * @param int $characterId
+     * @param int $conversationId
      * @param UpdateConversationOptions $options
      * @return Response
      *
@@ -44,9 +44,9 @@ class ConversationResource extends BaseResource
      * @throws RequestException
      */
     public function update(
-        int $characterId,
+        int $conversationId,
         UpdateConversationOptions $options = new UpdateConversationOptions(),
     ): Response {
-        return $this->connector->send(new UpdateConversationRequest($characterId, $options));
+        return $this->connector->send(new UpdateConversationRequest($conversationId, $options));
     }
 }

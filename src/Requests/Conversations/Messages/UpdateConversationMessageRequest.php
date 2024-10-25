@@ -31,12 +31,10 @@ class UpdateConversationMessageRequest extends Request implements HasBody
 
     /**
      * @param int $conversationId
-     * @param string $content
      * @param UpdateConversationMessageOptions $options
      */
     public function __construct(
         protected int $conversationId,
-        protected string $content,
         protected UpdateConversationMessageOptions $options,
     ) {}
 
@@ -48,7 +46,6 @@ class UpdateConversationMessageRequest extends Request implements HasBody
     protected function defaultBody(): array
     {
         return [
-            'content' => $this->content,
             ...$this->options->toArray(),
         ];
     }
