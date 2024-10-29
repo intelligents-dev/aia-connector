@@ -4,7 +4,11 @@ namespace IntelligentsDev\AiaConnector\Requests\Images\Data;
 
 class TextToImageWithFaceSwapOptions extends ImageOptions
 {
-    public ?float $startMergeStep = null;
+    public ?float $startAt = null;
+
+    public ?float $endAt = null;
+
+    public ?float $weight = null;
 
     /**
      * Return the array representation of the character options.
@@ -14,7 +18,9 @@ class TextToImageWithFaceSwapOptions extends ImageOptions
     public function toArray(): array
     {
         return [
-            'start_merge_step' => $this->startMergeStep,
+            'start_at' => $this->startAt,
+            'end_at' => $this->endAt,
+            'weight' => $this->weight,
             ...parent::toArray(),
         ];
     }
@@ -22,12 +28,38 @@ class TextToImageWithFaceSwapOptions extends ImageOptions
     /**
      * Set the start merge step for the image.
      *
-     * @param float $startMergeStep
+     * @param float $startAt
      * @return $this
      */
-    public function setStartMergeStep(float $startMergeStep): self
+    public function setStartAt(float $startAt): self
     {
-        $this->startMergeStep = $startMergeStep;
+        $this->startAt = $startAt;
+
+        return $this;
+    }
+
+    /**
+     * Set the end merge step for the image.
+     *
+     * @param float $endAt
+     * @return $this
+     */
+    public function setEndAt(float $endAt): self
+    {
+        $this->endAt = $endAt;
+
+        return $this;
+    }
+
+    /**
+     * Set the weight.
+     *
+     * @param float $weight
+     * @return $this
+     */
+    public function setWeight(float $weight): self
+    {
+        $this->weight = $weight;
 
         return $this;
     }
