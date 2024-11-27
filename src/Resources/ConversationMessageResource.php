@@ -7,6 +7,7 @@ use IntelligentsDev\AiaConnector\Requests\Conversations\Messages\CreateConversat
 use IntelligentsDev\AiaConnector\Requests\Conversations\Messages\Data\AppendConversationMessageOptions;
 use IntelligentsDev\AiaConnector\Requests\Conversations\Messages\Data\CreateConversationMessageOptions;
 use IntelligentsDev\AiaConnector\Requests\Conversations\Messages\Data\UpdateConversationMessageOptions;
+use IntelligentsDev\AiaConnector\Requests\Conversations\Messages\DeleteConversationMessageRequest;
 use IntelligentsDev\AiaConnector\Requests\Conversations\Messages\UpdateConversationMessageRequest;
 use Saloon\Exceptions\Request\FatalRequestException;
 use Saloon\Exceptions\Request\RequestException;
@@ -28,7 +29,8 @@ class ConversationMessageResource extends BaseResource
         int $conversationId,
         string $content,
         CreateConversationMessageOptions $options = new CreateConversationMessageOptions(),
-    ): Response {
+    ): Response
+    {
         return $this->connector->send(
             new CreateConversationMessageRequest($conversationId, $content, $options),
         );
