@@ -33,9 +33,10 @@ class ConversationMessageResource extends BaseResource
     }
 
     /**
-     * Update a conversation.
+     * Update a conversation message.
      *
      * @param int $conversationId
+     * @param int $messageId
      * @param UpdateConversationMessageOptions $options
      * @return Response
      *
@@ -44,7 +45,12 @@ class ConversationMessageResource extends BaseResource
      */
     public function update(
         int $conversationId,
+        int $messageId,
         UpdateConversationMessageOptions $options = new UpdateConversationMessageOptions(),
+    ): Response
+    {
+        return $this->connector->send(new UpdateConversationMessageRequest($conversationId, $messageId, $options));
+    }
     ): Response {
         return $this->connector->send(new UpdateConversationMessageRequest($conversationId, $options));
     }

@@ -17,7 +17,7 @@ class UpdateConversationMessageRequest extends Request implements HasBody
      *
      * @var Method
      */
-    protected Method $method = Method::POST;
+    protected Method $method = Method::PUT;
 
     /**
      * The endpoint to send the request to.
@@ -26,15 +26,17 @@ class UpdateConversationMessageRequest extends Request implements HasBody
      */
     public function resolveEndpoint(): string
     {
-        return sprintf('/conversation/%d/message', $this->conversationId);
+        return vsprintf('/conversation/%d/message/%d', [$this->conversationId, $this->messageId]);
     }
 
     /**
      * @param int $conversationId
+     * @param int $messageId
      * @param UpdateConversationMessageOptions $options
      */
     public function __construct(
         protected int $conversationId,
+        protected int $messageId,
         protected UpdateConversationMessageOptions $options,
     ) {}
 
