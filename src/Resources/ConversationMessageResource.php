@@ -2,7 +2,9 @@
 
 namespace IntelligentsDev\AiaConnector\Resources;
 
+use IntelligentsDev\AiaConnector\Requests\Conversations\Messages\AppendConversationMessageRequest;
 use IntelligentsDev\AiaConnector\Requests\Conversations\Messages\CreateConversationMessageRequest;
+use IntelligentsDev\AiaConnector\Requests\Conversations\Messages\Data\AppendConversationMessageOptions;
 use IntelligentsDev\AiaConnector\Requests\Conversations\Messages\Data\CreateConversationMessageOptions;
 use IntelligentsDev\AiaConnector\Requests\Conversations\Messages\Data\UpdateConversationMessageOptions;
 use IntelligentsDev\AiaConnector\Requests\Conversations\Messages\UpdateConversationMessageRequest;
@@ -51,7 +53,33 @@ class ConversationMessageResource extends BaseResource
     {
         return $this->connector->send(new UpdateConversationMessageRequest($conversationId, $messageId, $options));
     }
+
+    /**
+     * @param int $conversationId
+     * @param array<int, AppendConversationMessageOptions> $messages
+     * @return Response
+     */
+    public function append(
+        int $conversationId,
+        array $messages,
     ): Response {
-        return $this->connector->send(new UpdateConversationMessageRequest($conversationId, $options));
+        return $this->connector->send(new AppendConversationMessageRequest($conversationId, $messages));
+    }
+
+    /**
+     * Delete a conversation message
+     *
+     * @param int $conversationId
+     * @param int $messageId
+     * @return Response
+     * @throws FatalRequestException
+     * @throws RequestException
+     */
+    public function delete(
+        int $conversationId,
+        int $messageId,
+    ): Response
+    {
+        return $this->connector->send(new DeleteConversationMessageRequest($conversationId, $messageId));
     }
 }
