@@ -4,12 +4,17 @@ namespace IntelligentsDev\AiaConnector;
 
 use IntelligentsDev\AiaConnector\Resources\ConversationResource;
 use IntelligentsDev\AiaConnector\Resources\ImageResource;
+use IntelligentsDev\AiaConnector\Resources\LanguageModelResource;
 use Saloon\Http\Auth\TokenAuthenticator;
 use Saloon\Http\Connector;
+use Saloon\Http\Request;
+use Saloon\Http\Response;
 use Saloon\HttpSender\HttpSender;
+use Saloon\PaginationPlugin\Contracts\HasPagination;
+use Saloon\PaginationPlugin\PagedPaginator;
 use Saloon\Traits\Plugins\AcceptsJson;
 
-class AiaConnector extends Connector
+class AiaConnector extends Connector implements HasPagination
 {
     use AcceptsJson;
 
@@ -53,6 +58,28 @@ class AiaConnector extends Connector
     }
 
     /**
+     * Paginate the response.
+     *
+     * @param Request $request
+     * @return PagedPaginator
+     */
+    public function paginate(Request $request): PagedPaginator
+    {
+        return new class(connector: $this, request: $request) extends PagedPaginator
+        {
+            protected function isLastPage(Response $response): bool
+            {
+                return $response->json('meta.current_page') >= $response->json('meta.last_page');
+            }
+
+            protected function getPageItems(Response $response, Request $request): array
+            {
+                return $response->json('data');
+            }
+        };
+    }
+
+    /**
      * @return ConversationResource
      */
     public function conversations(): ConversationResource
@@ -66,5 +93,13 @@ class AiaConnector extends Connector
     public function images(): ImageResource
     {
         return new ImageResource($this);
+    }
+
+    /**
+     * @return LanguageModelResource
+     */
+    public function languageModels(): LanguageModelResource
+    {
+        return new LanguageModelResource($this);
     }
 }
