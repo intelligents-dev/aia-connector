@@ -2,13 +2,14 @@
 
 namespace IntelligentsDev\AiaConnector\Requests\Conversations\Messages;
 
-use IntelligentsDev\AiaConnector\Requests\Conversations\Messages\Data\UpdateConversationMessageOptions;
+use IntelligentsDev\AiaConnector\Requests\Conversations\Messages\Data\AppendConversationMessageOptions;
+use IntelligentsDev\AiaConnector\Requests\Conversations\Messages\Data\CreateConversationMessageOptions;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Traits\Body\HasJsonBody;
 
-class UpdateConversationMessageRequest extends Request implements HasBody
+class AppendConversationMessageRequest extends Request implements HasBody
 {
     use HasJsonBody;
 
@@ -17,7 +18,7 @@ class UpdateConversationMessageRequest extends Request implements HasBody
      *
      * @var Method
      */
-    protected Method $method = Method::PUT;
+    protected Method $method = Method::POST;
 
     /**
      * The endpoint to send the request to.
@@ -26,18 +27,16 @@ class UpdateConversationMessageRequest extends Request implements HasBody
      */
     public function resolveEndpoint(): string
     {
-        return vsprintf('/conversation/%d/message/%d', [$this->conversationId, $this->messageId]);
+        return sprintf('/conversation/%d/message/append', $this->conversationId);
     }
 
     /**
      * @param int $conversationId
-     * @param int $messageId
-     * @param UpdateConversationMessageOptions $options
+     * @param array<int, AppendConversationMessageOptions $messages>
      */
     public function __construct(
         protected int $conversationId,
-        protected int $messageId,
-        protected UpdateConversationMessageOptions $options,
+        protected array $messages,
     ) {}
 
     /**
@@ -47,6 +46,8 @@ class UpdateConversationMessageRequest extends Request implements HasBody
      */
     protected function defaultBody(): array
     {
-        return $this->options->toArray();
+        return [
+            'messages' => collect($this->messages)->toArray(),
+        ];
     }
 }
