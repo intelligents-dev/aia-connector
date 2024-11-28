@@ -22,7 +22,7 @@ class LanguageModelResource extends BaseResource
     public function all(): PagedPaginator
     {
         return $this->connector->paginate(
-            new GetLanguageModelsRequest(),
+            GetLanguageModelsRequest::make(),
         );
     }
 }
