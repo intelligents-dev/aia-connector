@@ -3,18 +3,24 @@
 namespace IntelligentsDev\AiaConnector\Requests\Conversations\Messages\Data;
 
 use Illuminate\Contracts\Support\Arrayable;
+use IntelligentsDev\AiaConnector\Enums\ConversationMessageContentType;
+use IntelligentsDev\AiaConnector\Enums\ConversationMessageRole;
 use IntelligentsDev\AiaConnector\Enums\ConversationMessageType;
 use Saloon\Traits\Makeable;
 
-class UpdateConversationMessageOptions implements Arrayable
+class AppendConversationMessageOptions implements Arrayable
 {
     use Makeable;
-
-    public ?string $content = null;
 
     public ?string $meta = null;
 
     public ?ConversationMessageType $type = null;
+
+    public ?ConversationMessageRole $role = null;
+
+    private function __construct(
+        public string $content,
+    ) {}
 
     /**
      * Return the array representation of the message options.
@@ -27,15 +33,17 @@ class UpdateConversationMessageOptions implements Arrayable
             'content' => $this->content,
             'meta' => $this->meta,
             'type' => $this->type?->value,
+            'role' => $this->role?->value,
         ];
     }
 
     /**
-     * Set content for message
-     * @param string|null $content
+     * Set content for the message.
+     *
+     * @param string $content
      * @return $this
      */
-    public function setContent(?string $content): self
+    public function setContent(string $content): self
     {
         $this->content = $content;
 
@@ -45,7 +53,7 @@ class UpdateConversationMessageOptions implements Arrayable
     /**
      * Set meta for the message.
      *
-     * @param null|string $meta
+     * @param string $meta
      * @return $this
      */
     public function setMeta(?string $meta): self
@@ -56,14 +64,27 @@ class UpdateConversationMessageOptions implements Arrayable
     }
 
     /**
-     * Set the message type for the message.
+     * Set the type for the message.
      *
-     * @param ConversationMessageType $type
+     * @param null|ConversationMessageRole $type
      * @return $this
      */
     public function setType(?ConversationMessageType $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Set the role for the message.
+     *
+     * @param null|ConversationMessageRole $role
+     * @return $this
+     */
+    public function setRole(?ConversationMessageRole $role): self
+    {
+        $this->role = $role;
 
         return $this;
     }

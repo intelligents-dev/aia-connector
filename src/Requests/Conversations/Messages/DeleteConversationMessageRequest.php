@@ -2,22 +2,17 @@
 
 namespace IntelligentsDev\AiaConnector\Requests\Conversations\Messages;
 
-use IntelligentsDev\AiaConnector\Requests\Conversations\Messages\Data\UpdateConversationMessageOptions;
-use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
-use Saloon\Traits\Body\HasJsonBody;
 
-class UpdateConversationMessageRequest extends Request implements HasBody
+class DeleteConversationMessageRequest extends Request
 {
-    use HasJsonBody;
-
     /**
      * The method to send the request with.
      *
      * @var Method
      */
-    protected Method $method = Method::PUT;
+    protected Method $method = Method::DELETE;
 
     /**
      * The endpoint to send the request to.
@@ -32,21 +27,9 @@ class UpdateConversationMessageRequest extends Request implements HasBody
     /**
      * @param int $conversationId
      * @param int $messageId
-     * @param UpdateConversationMessageOptions $options
      */
     public function __construct(
         protected int $conversationId,
         protected int $messageId,
-        protected UpdateConversationMessageOptions $options,
     ) {}
-
-    /**
-     * The default body for the request.
-     *
-     * @return array
-     */
-    protected function defaultBody(): array
-    {
-        return $this->options->toArray();
-    }
 }

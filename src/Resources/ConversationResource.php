@@ -5,6 +5,7 @@ namespace IntelligentsDev\AiaConnector\Resources;
 use IntelligentsDev\AiaConnector\Requests\Conversations\CreateConversationRequest;
 use IntelligentsDev\AiaConnector\Requests\Conversations\Data\CreateConversationOptions;
 use IntelligentsDev\AiaConnector\Requests\Conversations\Data\UpdateConversationOptions;
+use IntelligentsDev\AiaConnector\Requests\Conversations\DeleteConversationRequest;
 use IntelligentsDev\AiaConnector\Requests\Conversations\UpdateConversationRequest;
 use Saloon\Exceptions\Request\FatalRequestException;
 use Saloon\Exceptions\Request\RequestException;
@@ -48,5 +49,20 @@ class ConversationResource extends BaseResource
         UpdateConversationOptions $options = new UpdateConversationOptions(),
     ): Response {
         return $this->connector->send(new UpdateConversationRequest($conversationId, $options));
+    }
+
+    /**
+     * Delete a conversation
+     *
+     * @param int $conversationId
+     * @return Response
+     * 
+     * @throws FatalRequestException
+     * @throws RequestException
+     */
+    public function delete(
+        int $conversationId
+    ): Response {
+        return $this->connector->send(new DeleteConversationRequest($conversationId));
     }
 }
