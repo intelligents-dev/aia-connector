@@ -2,7 +2,6 @@
 
 namespace IntelligentsDev\AiaConnector\Requests\Images;
 
-use IntelligentsDev\AiaConnector\Requests\Images\Data\CreateTextToImageOptions;
 use IntelligentsDev\AiaConnector\Requests\Images\Data\TextToImageOptions;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
@@ -31,6 +30,7 @@ class TextToImageRequest extends Request implements HasBody
     }
 
     /**
+     * @param string $prompt
      * @param TextToImageOptions $options
      */
     public function __construct(
