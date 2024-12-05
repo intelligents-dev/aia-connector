@@ -27,10 +27,12 @@ class CreateConversationMessageOptions implements Arrayable
 
     public ?ConversationMessageType $type = null;
 
+    public ?string $meta = null;
+
     /**
      * Return the array representation of the message options.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function toArray(): array
     {
@@ -43,13 +45,14 @@ class CreateConversationMessageOptions implements Arrayable
             'top_k' => $this->topK,
             'type' => $this->type?->value,
             'language_model' => $this->languageModel,
+            'meta' => $this->meta,
         ];
     }
 
     /**
      * Set the system prompt for the message.
      *
-     * @param string $systemPrompt
+     * @param string|null $systemPrompt
      * @return $this
      */
     public function setSystemPrompt(?string $systemPrompt): self
@@ -62,7 +65,7 @@ class CreateConversationMessageOptions implements Arrayable
     /**
      * Set the prefix prompt for the message.
      *
-     * @param string $prefixPrompt
+     * @param string|null $prefixPrompt
      * @return $this
      */
     public function setPrefixPrompt(?string $prefixPrompt): self
@@ -75,7 +78,7 @@ class CreateConversationMessageOptions implements Arrayable
     /**
      * Set the language model for the message.
      *
-     * @param string $languageModel
+     * @param string|null $languageModel
      * @return $this
      */
     public function setLanguageModel(?string $languageModel): self
@@ -88,7 +91,7 @@ class CreateConversationMessageOptions implements Arrayable
     /**
      * Set the temperature for the message.
      *
-     * @param float $temperature
+     * @param float|null $temperature
      * @return $this
      */
     public function setTemperature(?float $temperature): self
@@ -105,7 +108,7 @@ class CreateConversationMessageOptions implements Arrayable
     /**
      * Set the max tokens for the message.
      *
-     * @param int $maxTokens
+     * @param int|null $maxTokens
      * @return $this
      */
     public function setMaxTokens(?int $maxTokens): self
@@ -122,7 +125,7 @@ class CreateConversationMessageOptions implements Arrayable
     /**
      * Set the top p for the message.
      *
-     * @param float $topP
+     * @param float|null $topP
      * @return $this
      */
     public function setTopP(?float $topP): self
@@ -139,7 +142,7 @@ class CreateConversationMessageOptions implements Arrayable
     /**
      * Set the top k for the message.
      *
-     * @param int $topK
+     * @param int|null $topK
      * @return $this
      */
     public function setTopK(?int $topK): self
@@ -156,12 +159,25 @@ class CreateConversationMessageOptions implements Arrayable
     /**
      * Set the message type for the message.
      *
-     * @param ConversationMessageType $type
+     * @param ConversationMessageType|null $type
      * @return $this
      */
     public function setType(?ConversationMessageType $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Set the meta for the message.
+     *
+     * @param string|null $meta
+     * @return $this
+     */
+    public function setMeta(?string $meta): self
+    {
+        $this->meta = $meta;
 
         return $this;
     }
