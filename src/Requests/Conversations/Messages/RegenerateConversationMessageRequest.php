@@ -2,11 +2,10 @@
 
 namespace IntelligentsDev\AiaConnector\Requests\Conversations\Messages;
 
-use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 
-class RegenerateConversationMessageRequest extends Request implements HasBody
+class RegenerateConversationMessageRequest extends Request
 {
     /**
      * The method to send the request with.
