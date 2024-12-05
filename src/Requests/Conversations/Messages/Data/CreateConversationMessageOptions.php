@@ -27,6 +27,8 @@ class CreateConversationMessageOptions implements Arrayable
 
     public ?ConversationMessageType $type = null;
 
+    public ?string $meta = null;
+
     /**
      * Return the array representation of the message options.
      *
@@ -43,6 +45,7 @@ class CreateConversationMessageOptions implements Arrayable
             'top_k' => $this->topK,
             'type' => $this->type?->value,
             'language_model' => $this->languageModel,
+            'meta' => $this->meta,
         ];
     }
 
@@ -162,6 +165,19 @@ class CreateConversationMessageOptions implements Arrayable
     public function setType(?ConversationMessageType $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Set the meta for the message.
+     *
+     * @param string|null $meta
+     * @return $this
+     */
+    public function setMeta(?string $meta): self
+    {
+        $this->meta = $meta;
 
         return $this;
     }
