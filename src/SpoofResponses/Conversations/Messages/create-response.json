@@ -1,0 +1,20 @@
+{
+  "data": {
+    "id": 2,
+    "conversation_id": 1,
+    "language_model_id": 1,
+    "language_model": "7933179c-e3ba-32e5-9091-a7014c003380",
+    "sequence": 1,
+    "type": "text",
+    "content": "test message",
+    "meta": null,
+    "role": "assistant",
+    "system_prompt": "Totam voluptates voluptate ea cumque provident ut sunt fugit. Nostrum quibusdam sed laudantium ut consectetur minima quam. Sunt illum debitis qui cupiditate asperiores qui.",
+    "prefix_prompt": "Maiores aperiam illum ut ipsum. Quas aut sint ex cumque qui.",
+    "stop_reason": "test stop_reason",
+    "duration": 8473,
+    "regeneratable": true,
+    "created_at": "2024-12-10T16:52:56.000000Z",
+    "updated_at": "2024-12-10T16:52:56.000000Z"
+  }
+}

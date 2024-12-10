@@ -7,6 +7,8 @@ use IntelligentsDev\AiaConnector\Resources\ImageResource;
 use IntelligentsDev\AiaConnector\Resources\LanguageModelResource;
 use Saloon\Http\Auth\TokenAuthenticator;
 use Saloon\Http\Connector;
+use Saloon\Http\Faking\MockClient;
+use Saloon\Http\Faking\MockResponse;
 use Saloon\Http\Request;
 use Saloon\Http\Response;
 use Saloon\HttpSender\HttpSender;
@@ -17,6 +19,13 @@ use Saloon\Traits\Plugins\AcceptsJson;
 class AiaConnector extends Connector implements HasPagination
 {
     use AcceptsJson;
+
+    public function __construct()
+    {
+        if (config('aia.spoof_requests')) {
+            $this->withMockClient($this->makeMockClient());
+        }
+    }
 
     /**
      * The default sender for the AIA API.
@@ -101,5 +110,39 @@ class AiaConnector extends Connector implements HasPagination
     public function languageModels(): LanguageModelResource
     {
         return new LanguageModelResource($this);
+    }
+
+    private function makeMockClient(): MockClient
+    {
+        return new MockClient([
+            Requests\Conversations\CreateConversationRequest::class =>
+            $this->getMockResponse('Conversations/create', 201),
+            Requests\Conversations\DeleteConversationRequest::class =>
+            $this->getMockResponse('Conversations/delete', 204),
+            Requests\Conversations\UpdateConversationRequest::class =>
+            $this->getMockResponse('Conversations/update', 200),
+            Requests\Conversations\Messages\AppendConversationMessageRequest::class =>
+            $this->getMockResponse('Conversations/Messages/append', 200),
+            Requests\Conversations\Messages\CreateConversationMessageRequest::class =>
+            $this->getMockResponse('Conversations/Messages/create', 201),
+            Requests\Conversations\Messages\DeleteConversationMessageRequest::class =>
+            $this->getMockResponse('Conversations/Messages/delete', 204),
+            Requests\Conversations\Messages\RegenerateConversationMessageRequest::class =>
+            $this->getMockResponse('Conversations/Messages/regenerate', 201),
+            Requests\Conversations\Messages\UpdateConversationMessageRequest::class =>
+            $this->getMockResponse('Conversations/Messages/update', 200),
+            Requests\Images\TextToImageRequest::class =>
+            $this->getMockResponse('Images/text-to-image', 201),
+            Requests\Images\TextToImageWithFaceSwapRequest::class =>
+            $this->getMockResponse('Images/text-to-image-with-face-swap', 201),
+            Requests\LanguageModels\GetLanguageModelsRequest::class =>
+            $this->getMockResponse('LanguageModels/get-language-models', 200),
+        ]);
+    }
+
+    private function getMockResponse(string $name, int $status): MockResponse
+    {
+        $body = file_get_contents(__DIR__ . "/SpoofResponses/$name-response.json");
+        return MockResponse::make($body, $status);
     }
 }

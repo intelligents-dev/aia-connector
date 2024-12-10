@@ -1,0 +1,19 @@
+{
+  "data": {
+    "id": 1,
+    "language_model_id": 1,
+    "languageModel": {
+      "id": 1,
+      "key": "53dc7806-a57d-399b-80a9-6062a0e3e6ed",
+      "description": null,
+      "is_enabled": true,
+      "is_default": true,
+      "created_at": "2024-12-10T16:38:11.000000Z",
+      "updated_at": "2024-12-10T16:38:11.000000Z"
+    },
+    "system_prompt": null,
+    "prefix_prompt": null,
+    "created_at": "2024-12-10T16:38:11.000000Z",
+    "updated_at": "2024-12-10T16:38:11.000000Z"
+  }
+}

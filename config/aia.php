@@ -7,4 +7,5 @@ return [
     'face_image_callback_url' => env('AIA_FACE_IMAGE_CALLBACK_URL'),
     'profile_image_callback_url' => env('AIA_PROFILE_IMAGE_CALLBACK_URL'),
     'ignore_ssl' => env('AIA_IGNORE_SSL', false),
+    'spoof_requests' => env('AIA_SPOOF_REQUESTS', false),
 ];
