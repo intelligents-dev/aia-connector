@@ -1,0 +1,10 @@
+{
+  "data": {
+    "id": 1,
+    "user_id": 1,
+    "request": { "prompt": "test prompt", "source_url": "http://example.com" },
+    "status": "pending",
+    "url": null,
+    "error": null
+  }
+}
