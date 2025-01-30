@@ -26,6 +26,6 @@ class GetTextToSpeechVoicesRequest extends Request implements HasBody, Paginatab
      */
     public function resolveEndpoint(): string
     {
-        return '/tts/voices';
+        return '/text-to-speech/voices';
     }
 }

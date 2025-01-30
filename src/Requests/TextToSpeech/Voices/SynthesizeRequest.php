@@ -16,7 +16,7 @@ class SynthesizeRequest extends Request implements HasBody, Paginatable
 
     public function resolveEndpoint(): string
     {
-        return sprintf('/tts/voices/%d/synthesize', $this->voiceId);
+        return sprintf('/text-to-speech/voices/%d/synthesize', $this->voiceId);
     }
 
     public function __construct(
