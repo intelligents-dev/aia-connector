@@ -5,6 +5,7 @@ namespace IntelligentsDev\AiaConnector;
 use IntelligentsDev\AiaConnector\Resources\ConversationResource;
 use IntelligentsDev\AiaConnector\Resources\ImageResource;
 use IntelligentsDev\AiaConnector\Resources\LanguageModelResource;
+use IntelligentsDev\AiaConnector\Resources\TextToSpeechResource;
 use Saloon\Http\Auth\TokenAuthenticator;
 use Saloon\Http\Connector;
 use Saloon\Http\Faking\MockClient;
@@ -112,6 +113,14 @@ class AiaConnector extends Connector implements HasPagination
         return new LanguageModelResource($this);
     }
 
+    /**
+     * @return TextToSpeechResource
+     */
+    public function textToSpeech(): TextToSpeechResource
+    {
+        return new TextToSpeechResource($this);
+    }
+
     private function makeMockClient(): MockClient
     {
         return new MockClient([
@@ -137,6 +146,10 @@ class AiaConnector extends Connector implements HasPagination
             $this->getMockResponse('Images/text-to-image-with-face-swap', 201),
             Requests\LanguageModels\GetLanguageModelsRequest::class =>
             $this->getMockResponse('LanguageModels/get-language-models', 200),
+            Requests\TextToSpeech\Voices\GetTextToSpeechVoicesRequest::class =>
+            $this->getMockResponse('TextToSpeech/Voices/index', 200),
+            Requests\TextToSpeech\Voices\SynthesizeRequest::class =>
+            $this->getMockResponse('TextToSpeech/Voices/synthesize', 200),
         ]);
     }
 
