@@ -25,10 +25,10 @@ class TextToImageOptions extends ImageOptions
     /**
      * Set the LoRA scale for the image.
      *
-     * @param float $loraScale
+     * @param float|null $loraScale
      * @return $this
      */
-    public function setLoraScale(float $loraScale): self
+    public function setLoraScale(?float $loraScale): self
     {
         $this->loraScale = $loraScale;
 
@@ -38,10 +38,10 @@ class TextToImageOptions extends ImageOptions
     /**
      * Set the LoRA weight name for the image.
      *
-     * @param string $loraWeightName
+     * @param string|null $loraWeightName
      * @return $this
      */
-    public function setLoraWeightName(string $loraWeightName): self
+    public function setLoraWeightName(?string $loraWeightName): self
     {
         $this->loraWeightName = $loraWeightName;
 

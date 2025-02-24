@@ -54,10 +54,10 @@ abstract class ImageOptions implements Arrayable
     /**
      * Set the scheduler name for the image.
      *
-     * @param string $schedulerName
+     * @param string|null $schedulerName
      * @return $this
      */
-    public function setSchedulerName(string $schedulerName): self
+    public function setSchedulerName(?string $schedulerName): self
     {
         $this->schedulerName = $schedulerName;
 
@@ -67,10 +67,10 @@ abstract class ImageOptions implements Arrayable
     /**
      * Set the model name for the image.
      *
-     * @param string $modelName
+     * @param string|null $modelName
      * @return $this
      */
-    public function setModelName(string $modelName): self
+    public function setModelName(?string $modelName): self
     {
         $this->modelName = $modelName;
 
@@ -80,10 +80,10 @@ abstract class ImageOptions implements Arrayable
     /**
      * Set the negative prompt for the image.
      *
-     * @param string $negativePrompt
+     * @param string|null $negativePrompt
      * @return $this
      */
-    public function setNegativePrompt(string $negativePrompt): self
+    public function setNegativePrompt(?string $negativePrompt): self
     {
         $this->negativePrompt = $negativePrompt;
 
@@ -93,10 +93,10 @@ abstract class ImageOptions implements Arrayable
     /**
      * Set the number of inference steps for the image.
      *
-     * @param int $numInferenceSteps
+     * @param int|null $numInferenceSteps
      * @return $this
      */
-    public function setNumInferenceSteps(int $numInferenceSteps): self
+    public function setNumInferenceSteps(?int $numInferenceSteps): self
     {
         $this->numInferenceSteps = $numInferenceSteps;
 
@@ -106,10 +106,10 @@ abstract class ImageOptions implements Arrayable
     /**
      * Set the guidance scale for the image.
      *
-     * @param float $guidanceScale
+     * @param float|null $guidanceScale
      * @return $this
      */
-    public function setGuidanceScale(float $guidanceScale): self
+    public function setGuidanceScale(?float $guidanceScale): self
     {
         $this->guidanceScale = $guidanceScale;
 
@@ -119,10 +119,10 @@ abstract class ImageOptions implements Arrayable
     /**
      * Set the height for the image.
      *
-     * @param int $height
+     * @param int|null $height
      * @return $this
      */
-    public function setHeight(int $height): self
+    public function setHeight(?int $height): self
     {
         $this->height = $height;
 
@@ -132,10 +132,10 @@ abstract class ImageOptions implements Arrayable
     /**
      * Set the width for the image.
      *
-     * @param int $width
+     * @param int|null $width
      * @return $this
      */
-    public function setWidth(int $width): self
+    public function setWidth(?int $width): self
     {
         $this->width = $width;
 
@@ -145,10 +145,10 @@ abstract class ImageOptions implements Arrayable
     /**
      * Set webhook urls for the image
      *
-     * @param string|array $webhookUrl
+     * @param string|array|null $webhookUrl
      * @return $this
      */
-    public function setWebhookUrl(string|array $webhookUrl = []): self
+    public function setWebhookUrl(string|array|null $webhookUrl = []): self
     {
         if (is_array($webhookUrl)) {
             $this->webhookUrls = array_merge($this->webhookUrls, $webhookUrl);
