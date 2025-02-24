@@ -2,11 +2,12 @@
 
 namespace IntelligentsDev\AiaConnector\Resources;
 
-use IntelligentsDev\AiaConnector\Requests\Images\CreateTextToImageRequest;
-use IntelligentsDev\AiaConnector\Requests\Images\CreateTextToImageWithFaceSwapRequest;
 use IntelligentsDev\AiaConnector\Requests\Images\Data\CreateTextToImageOptions;
 use IntelligentsDev\AiaConnector\Requests\Images\Data\TextToImageOptions;
 use IntelligentsDev\AiaConnector\Requests\Images\Data\TextToImageWithFaceSwapOptions;
+use IntelligentsDev\AiaConnector\Requests\Images\LorasRequest;
+use IntelligentsDev\AiaConnector\Requests\Images\ModelsRequest;
+use IntelligentsDev\AiaConnector\Requests\Images\SchedulersRequest;
 use IntelligentsDev\AiaConnector\Requests\Images\TextToImageRequest;
 use IntelligentsDev\AiaConnector\Requests\Images\TextToImageWithFaceSwapRequest;
 use Saloon\Exceptions\Request\FatalRequestException;
@@ -28,8 +29,7 @@ class ImageResource extends BaseResource
     public function textToImage(
         string $prompt,
         TextToImageOptions $options = new TextToImageOptions(),
-    ): Response
-    {
+    ): Response {
         return $this->connector->send(
             new TextToImageRequest($prompt, $options),
         );
@@ -48,11 +48,48 @@ class ImageResource extends BaseResource
         string $prompt,
         string $sourceUrl,
         TextToImageWithFaceSwapOptions $options = new TextToImageWithFaceSwapOptions(),
-    ): Response
-    {
+    ): Response {
         return $this->connector->send(
             new TextToImageWithFaceSwapRequest($prompt, $sourceUrl, $options),
         );
     }
 
+    /**
+     * Get all Loras
+     *
+     * @return Response
+     *
+     * @throws FatalRequestException
+     * @throws RequestException
+     */
+    public function loras(
+    ): Response {
+        return $this->connector->send(new LorasRequest());
+    }
+
+    /**
+     * Get all Models
+     *
+     * @return Response
+     *
+     * @throws FatalRequestException
+     * @throws RequestException
+     */
+    public function models(
+    ): Response {
+        return $this->connector->send(new ModelsRequest());
+    }
+
+    /**
+     * Get all schedulers
+     *
+     * @return Response
+     *
+     * @throws FatalRequestException
+     * @throws RequestException
+     */
+    public function schedulers(
+    ): Response {
+        return $this->connector->send(new SchedulersRequest());
+    }
 }

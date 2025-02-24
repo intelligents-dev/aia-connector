@@ -144,6 +144,12 @@ class AiaConnector extends Connector implements HasPagination
             $this->getMockResponse('Images/text-to-image', 201),
             Requests\Images\TextToImageWithFaceSwapRequest::class =>
             $this->getMockResponse('Images/text-to-image-with-face-swap', 201),
+            Requests\Images\LorasRequest::class =>
+            $this->getMockResponse('Images/loras', 200),
+            Requests\Images\ModelsRequest::class =>
+                $this->getMockResponse('Images/models', 200),
+            Requests\Images\SchedulersRequest::class =>
+                $this->getMockResponse('Images/schedulers', 200),
             Requests\LanguageModels\GetLanguageModelsRequest::class =>
             $this->getMockResponse('LanguageModels/get-language-models', 200),
             Requests\TextToSpeech\Voices\GetTextToSpeechVoicesRequest::class =>
