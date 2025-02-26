@@ -8,6 +8,7 @@ use IntelligentsDev\AiaConnector\Requests\Images\Data\TextToImageWithFaceSwapOpt
 use IntelligentsDev\AiaConnector\Requests\Images\LorasRequest;
 use IntelligentsDev\AiaConnector\Requests\Images\ModelsRequest;
 use IntelligentsDev\AiaConnector\Requests\Images\SchedulersRequest;
+use IntelligentsDev\AiaConnector\Requests\Images\ShowImageRequest;
 use IntelligentsDev\AiaConnector\Requests\Images\TextToImageRequest;
 use IntelligentsDev\AiaConnector\Requests\Images\TextToImageWithFaceSwapRequest;
 use Saloon\Exceptions\Request\FatalRequestException;
@@ -91,5 +92,18 @@ class ImageResource extends BaseResource
     public function schedulers(
     ): Response {
         return $this->connector->send(new SchedulersRequest());
+    }
+
+    /**
+     * Gets image by id
+     *
+     * @param int $imageId
+     * @return Response
+     * @throws FatalRequestException
+     * @throws RequestException
+     */
+    public function show(int $imageId): Response
+    {
+        return $this->connector->send(new ShowImageRequest($imageId));
     }
 }
