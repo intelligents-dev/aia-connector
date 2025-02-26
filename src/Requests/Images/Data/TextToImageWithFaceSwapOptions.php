@@ -28,10 +28,10 @@ class TextToImageWithFaceSwapOptions extends ImageOptions
     /**
      * Set the start merge step for the image.
      *
-     * @param float $startAt
+     * @param float|null $startAt
      * @return $this
      */
-    public function setStartAt(float $startAt): self
+    public function setStartAt(?float $startAt): self
     {
         $this->startAt = $startAt;
 
@@ -41,10 +41,10 @@ class TextToImageWithFaceSwapOptions extends ImageOptions
     /**
      * Set the end merge step for the image.
      *
-     * @param float $endAt
+     * @param float|null $endAt
      * @return $this
      */
-    public function setEndAt(float $endAt): self
+    public function setEndAt(?float $endAt): self
     {
         $this->endAt = $endAt;
 
@@ -54,10 +54,10 @@ class TextToImageWithFaceSwapOptions extends ImageOptions
     /**
      * Set the weight.
      *
-     * @param float $weight
+     * @param float|null $weight
      * @return $this
      */
-    public function setWeight(float $weight): self
+    public function setWeight(?float $weight): self
     {
         $this->weight = $weight;
 
