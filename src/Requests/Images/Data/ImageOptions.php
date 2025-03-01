@@ -30,6 +30,10 @@ abstract class ImageOptions implements Arrayable
 
     public ?int $width = null;
 
+    public ?string $loraWeightName = null;
+
+    public ?float $loraScale = null;
+
     public ?array $webhookUrls = null;
 
     /**
@@ -48,6 +52,8 @@ abstract class ImageOptions implements Arrayable
             'height' => $this->height,
             'width' => $this->width,
             'webhook_urls' => $this->webhookUrls,
+            'lora_weight_name' => $this->loraWeightName,
+            'lora_scale' => $this->loraScale,
         ];
     }
 
@@ -155,6 +161,32 @@ abstract class ImageOptions implements Arrayable
         } else {
             $this->webhookUrls[] = $webhookUrl;
         }
+
+        return $this;
+    }
+
+    /**
+     * Set the LoRA weight name for the image.
+     *
+     * @param string|null $loraWeightName
+     * @return $this
+     */
+    public function setLoraWeightName(?string $weightName): self
+    {
+        $this->loraWeightName = $weightName;
+
+        return $this;
+    }
+
+    /**
+     * Set the LoRA scale for the image.
+     *
+     * @param float|null $loraScale
+     * @return $this
+     */
+    public function setLoraScale(?float $scale): self
+    {
+        $this->loraScale = $scale;
 
         return $this;
     }
