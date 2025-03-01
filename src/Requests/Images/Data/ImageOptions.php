@@ -35,6 +35,8 @@ abstract class ImageOptions implements Arrayable
     public ?float $loraScale = null;
 
     public ?array $webhookUrls = null;
+    public ?float $shemaleStrength = null;
+    public ?string $breastPrompt = null;
 
     /**
      * Return the array representation of the character options.
@@ -54,6 +56,8 @@ abstract class ImageOptions implements Arrayable
             'webhook_urls' => $this->webhookUrls,
             'lora_weight_name' => $this->loraWeightName,
             'lora_scale' => $this->loraScale,
+            'shemale_strength' => $this->shemaleStrength,
+            'breast_prompt' => $this->breastPrompt,
         ];
     }
 
@@ -187,6 +191,33 @@ abstract class ImageOptions implements Arrayable
     public function setLoraScale(?float $scale): self
     {
         $this->loraScale = $scale;
+
+        return $this;
+    }
+
+    /**
+     * Set the shemale strength for the image.
+     *
+     * @param float|null $shemaleStrength
+     * @return $this
+     */
+    public function setShemaleStrength(?float $shemaleStrength): self
+    {
+        $this->shemaleStrength = $shemaleStrength;
+
+        return $this;
+    }
+
+
+    /**
+     * Set the breast prompt for the image.
+     *
+     * @param string|null $breastPrompt
+     * @return $this
+     */
+    public function setBreastPrompt(?string $breastPrompt): self
+    {
+        $this->breastPrompt = $breastPrompt;
 
         return $this;
     }
