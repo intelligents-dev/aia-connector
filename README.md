@@ -18,6 +18,7 @@ Add the following to your `config/services.php` file and set the .env values acc
     'token' => env('AIA_TOKEN'),
     'image_callback_url' => env('AIA_IMAGE_CALLBACK_URL'),
     'ignore_ssl' => env('AIA_IGNORE_SSL', false),
+    'spoof_requests' => env('AIA_SPOOF_REQUESTS', false),
 ],
 ```
 ```dotenv
