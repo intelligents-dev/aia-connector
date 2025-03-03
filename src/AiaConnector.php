@@ -21,13 +21,6 @@ class AiaConnector extends Connector implements HasPagination
 {
     use AcceptsJson;
 
-    public function __construct()
-    {
-        if (config('aia.spoof_requests')) {
-            $this->withMockClient($this->makeMockClient());
-        }
-    }
-
     /**
      * The default sender for the AIA API.
      *
@@ -42,6 +35,15 @@ class AiaConnector extends Connector implements HasPagination
      */
     public function resolveBaseUrl(): string
     {
+        /**
+         * Temporary solution for Facade spoofing routes.
+         * Issue is that, partialMock does not call the constructor, so it never spoofs the requests.
+         * This method is always called at the beginning, so it will always set the spoofed requests when desired
+         */
+        if (config('aia.spoof_requests')) {
+            $this->withMockClient($this->makeMockClient());
+        }
+
         return config('aia.base_url');
     }
 
