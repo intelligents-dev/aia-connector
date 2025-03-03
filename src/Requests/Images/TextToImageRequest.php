@@ -20,6 +20,15 @@ class TextToImageRequest extends Request implements HasBody
     protected Method $method = Method::POST;
 
     /**
+     * @param string $prompt
+     * @param TextToImageOptions $options
+     */
+    public function __construct(
+        protected string $prompt,
+        protected TextToImageOptions $options,
+    ) {}
+
+    /**
      * The endpoint to send the request to.
      *
      * @return string
@@ -28,15 +37,6 @@ class TextToImageRequest extends Request implements HasBody
     {
         return '/image/text-to-image';
     }
-
-    /**
-     * @param string $prompt
-     * @param TextToImageOptions $options
-     */
-    public function __construct(
-        protected string $prompt,
-        protected TextToImageOptions $options,
-    ) {}
 
     /**
      * The default body for the request.

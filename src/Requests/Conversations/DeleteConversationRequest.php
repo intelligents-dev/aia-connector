@@ -14,6 +14,10 @@ class DeleteConversationRequest extends Request
      */
     protected Method $method = Method::DELETE;
 
+    public function __construct(
+        protected readonly int $conversationId,
+    ) {}
+
     /**
      * The endpoint to send the request to.
      *
@@ -23,8 +27,4 @@ class DeleteConversationRequest extends Request
     {
         return '/conversation/' . $this->conversationId;
     }
-
-    public function __construct(
-        protected readonly int $conversationId,
-    ) {}
 }

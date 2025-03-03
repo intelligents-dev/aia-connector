@@ -3,7 +3,6 @@
 namespace IntelligentsDev\AiaConnector\Requests\Conversations\Messages\Data;
 
 use Illuminate\Contracts\Support\Arrayable;
-use IntelligentsDev\AiaConnector\Enums\ConversationMessageContentType;
 use IntelligentsDev\AiaConnector\Enums\ConversationMessageRole;
 use IntelligentsDev\AiaConnector\Enums\ConversationMessageType;
 use Saloon\Traits\Makeable;

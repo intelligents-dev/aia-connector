@@ -1,6 +1,6 @@
 <?php
 
-namespace IntelligentsDev\AiaConnector\Providers;
+namespace IntelligentsDev\AiaConnector;
 
 use Illuminate\Support\ServiceProvider;
 

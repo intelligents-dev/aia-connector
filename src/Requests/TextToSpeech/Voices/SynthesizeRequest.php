@@ -14,15 +14,15 @@ class SynthesizeRequest extends Request implements HasBody, Paginatable
 
     protected Method $method = Method::POST;
 
-    public function resolveEndpoint(): string
-    {
-        return sprintf('/text-to-speech/voices/%d/synthesize', $this->voiceId);
-    }
-
     public function __construct(
         protected int $voiceId,
         protected string $text,
     ) {}
+
+    public function resolveEndpoint(): string
+    {
+        return sprintf('/text-to-speech/voices/%d/synthesize', $this->voiceId);
+    }
 
     protected function defaultBody(): array
     {

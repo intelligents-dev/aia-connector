@@ -15,6 +15,15 @@ class RegenerateConversationMessageRequest extends Request
     protected Method $method = Method::POST;
 
     /**
+     * @param int $conversationId
+     * @param int $messageId
+     */
+    public function __construct(
+        protected int $conversationId,
+        protected int $messageId,
+    ) {}
+
+    /**
      * The endpoint to send the request to.
      *
      * @return string
@@ -23,13 +32,4 @@ class RegenerateConversationMessageRequest extends Request
     {
         return vsprintf('/conversation/%d/message/%d/regenerate', [$this->conversationId, $this->messageId]);
     }
-
-    /**
-     * @param int $conversationId
-     * @param int $messageId
-     */
-    public function __construct(
-        protected int $conversationId,
-        protected int $messageId,
-    ) {}
 }

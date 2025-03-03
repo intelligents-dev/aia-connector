@@ -2,8 +2,8 @@
 
 namespace IntelligentsDev\AiaConnector\Facades;
 
-use IntelligentsDev\AiaConnector\AiaConnector;
 use Illuminate\Support\Facades\Facade;
+use IntelligentsDev\AiaConnector\AiaConnector;
 
 /**
  * @mixin AiaConnector

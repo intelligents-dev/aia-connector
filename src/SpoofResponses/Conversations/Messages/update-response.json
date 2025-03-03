@@ -1,20 +1,20 @@
 {
-  "data": {
-    "id": 1,
-    "conversation_id": 2,
-    "language_model_id": 2,
-    "language_model": "4ebd0d93-0163-3842-a86d-067e01cacf01",
-    "sequence": 182,
-    "type": "text",
-    "content": "test content",
-    "meta": null,
-    "role": "user",
-    "system_prompt": null,
-    "prefix_prompt": null,
-    "stop_reason": null,
-    "duration": null,
-    "regeneratable": false,
-    "created_at": "2024-12-10T17:06:20.000000Z",
-    "updated_at": "2024-12-10T17:06:21.000000Z"
-  }
+    "data": {
+        "id": 1,
+        "conversation_id": 2,
+        "language_model_id": 2,
+        "language_model": "4ebd0d93-0163-3842-a86d-067e01cacf01",
+        "sequence": 182,
+        "type": "text",
+        "content": "test content",
+        "meta": null,
+        "role": "user",
+        "system_prompt": null,
+        "prefix_prompt": null,
+        "stop_reason": null,
+        "duration": null,
+        "regeneratable": false,
+        "created_at": "2024-12-10T17:06:20.000000Z",
+        "updated_at": "2024-12-10T17:06:21.000000Z"
+    }
 }

@@ -56,12 +56,12 @@ class ConversationResource extends BaseResource
      *
      * @param int $conversationId
      * @return Response
-     * 
+     *
      * @throws FatalRequestException
      * @throws RequestException
      */
     public function delete(
-        int $conversationId
+        int $conversationId,
     ): Response {
         return $this->connector->send(new DeleteConversationRequest($conversationId));
     }

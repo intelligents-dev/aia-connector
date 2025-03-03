@@ -20,16 +20,6 @@ class CreateConversationMessageRequest extends Request implements HasBody
     protected Method $method = Method::POST;
 
     /**
-     * The endpoint to send the request to.
-     *
-     * @return string
-     */
-    public function resolveEndpoint(): string
-    {
-        return sprintf('/conversation/%d/message', $this->conversationId);
-    }
-
-    /**
      * @param int $conversationId
      * @param string $content
      * @param CreateConversationMessageOptions $options
@@ -39,6 +29,16 @@ class CreateConversationMessageRequest extends Request implements HasBody
         protected string $content,
         protected CreateConversationMessageOptions $options,
     ) {}
+
+    /**
+     * The endpoint to send the request to.
+     *
+     * @return string
+     */
+    public function resolveEndpoint(): string
+    {
+        return sprintf('/conversation/%d/message', $this->conversationId);
+    }
 
     /**
      * The default body for the request.

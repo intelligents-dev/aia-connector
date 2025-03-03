@@ -3,8 +3,8 @@
 namespace IntelligentsDev\AiaConnector\Requests\Conversations\Messages\Data;
 
 use Illuminate\Contracts\Support\Arrayable;
-use IntelligentsDev\AiaConnector\Enums\ConversationMessageContentType;
 use IntelligentsDev\AiaConnector\Enums\ConversationMessageType;
+use InvalidArgumentException;
 use Saloon\Traits\Makeable;
 
 class CreateConversationMessageOptions implements Arrayable
@@ -97,7 +97,7 @@ class CreateConversationMessageOptions implements Arrayable
     public function setTemperature(?float $temperature): self
     {
         if ($temperature < 0 || $temperature > 2) {
-            throw new \InvalidArgumentException('Temperature should be between 0 and 2.');
+            throw new InvalidArgumentException('Temperature should be between 0 and 2.');
         }
 
         $this->temperature = $temperature;
@@ -114,7 +114,7 @@ class CreateConversationMessageOptions implements Arrayable
     public function setMaxTokens(?int $maxTokens): self
     {
         if ($maxTokens < 0 || $maxTokens > 2048) {
-            throw new \InvalidArgumentException('Temperature should be between 1 and 2048.');
+            throw new InvalidArgumentException('Temperature should be between 1 and 2048.');
         }
 
         $this->maxTokens = $maxTokens;
@@ -131,7 +131,7 @@ class CreateConversationMessageOptions implements Arrayable
     public function setTopP(?float $topP): self
     {
         if ($topP < 0 || $topP > 1) {
-            throw new \InvalidArgumentException('Top P should be between 0 and 1.');
+            throw new InvalidArgumentException('Top P should be between 0 and 1.');
         }
 
         $this->topP = $topP;
@@ -148,7 +148,7 @@ class CreateConversationMessageOptions implements Arrayable
     public function setTopK(?int $topK): self
     {
         if ($topK < 0 || $topK > 2048) {
-            throw new \InvalidArgumentException('Top K should be between 0 and 2048.');
+            throw new InvalidArgumentException('Top K should be between 0 and 2048.');
         }
 
         $this->topK = $topK;

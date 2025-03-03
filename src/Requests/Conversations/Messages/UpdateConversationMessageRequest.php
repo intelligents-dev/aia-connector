@@ -20,16 +20,6 @@ class UpdateConversationMessageRequest extends Request implements HasBody
     protected Method $method = Method::PUT;
 
     /**
-     * The endpoint to send the request to.
-     *
-     * @return string
-     */
-    public function resolveEndpoint(): string
-    {
-        return vsprintf('/conversation/%d/message/%d', [$this->conversationId, $this->messageId]);
-    }
-
-    /**
      * @param int $conversationId
      * @param int $messageId
      * @param UpdateConversationMessageOptions $options
@@ -39,6 +29,16 @@ class UpdateConversationMessageRequest extends Request implements HasBody
         protected int $messageId,
         protected UpdateConversationMessageOptions $options,
     ) {}
+
+    /**
+     * The endpoint to send the request to.
+     *
+     * @return string
+     */
+    public function resolveEndpoint(): string
+    {
+        return vsprintf('/conversation/%d/message/%d', [$this->conversationId, $this->messageId]);
+    }
 
     /**
      * The default body for the request.

@@ -35,7 +35,9 @@ abstract class ImageOptions implements Arrayable
     public ?float $loraScale = null;
 
     public ?array $webhookUrls = null;
+
     public ?float $shemaleStrength = null;
+
     public ?string $breastPrompt = null;
 
     /**
@@ -172,7 +174,7 @@ abstract class ImageOptions implements Arrayable
     /**
      * Set the LoRA weight name for the image.
      *
-     * @param string|null $loraWeightName
+     * @param string|null $weightName
      * @return $this
      */
     public function setLoraWeightName(?string $weightName): self
@@ -185,7 +187,7 @@ abstract class ImageOptions implements Arrayable
     /**
      * Set the LoRA scale for the image.
      *
-     * @param float|null $loraScale
+     * @param float|null $scale
      * @return $this
      */
     public function setLoraScale(?float $scale): self
@@ -207,7 +209,6 @@ abstract class ImageOptions implements Arrayable
 
         return $this;
     }
-
 
     /**
      * Set the breast prompt for the image.

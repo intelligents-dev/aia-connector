@@ -20,6 +20,8 @@ class ConversationMessageResource extends BaseResource
     /**
      * Create a conversation.
      *
+     * @param int $conversationId
+     * @param string $content
      * @param CreateConversationMessageOptions $options
      * @return Response
      *
@@ -30,8 +32,7 @@ class ConversationMessageResource extends BaseResource
         int $conversationId,
         string $content,
         CreateConversationMessageOptions $options = new CreateConversationMessageOptions(),
-    ): Response
-    {
+    ): Response {
         return $this->connector->send(
             new CreateConversationMessageRequest($conversationId, $content, $options),
         );
@@ -52,8 +53,7 @@ class ConversationMessageResource extends BaseResource
         int $conversationId,
         int $messageId,
         UpdateConversationMessageOptions $options = new UpdateConversationMessageOptions(),
-    ): Response
-    {
+    ): Response {
         return $this->connector->send(new UpdateConversationMessageRequest($conversationId, $messageId, $options));
     }
 
@@ -70,8 +70,7 @@ class ConversationMessageResource extends BaseResource
     public function regenerate(
         int $conversationId,
         int $messageId,
-    ): Response
-    {
+    ): Response {
         return $this->connector->send(new RegenerateConversationMessageRequest($conversationId, $messageId));
     }
 
@@ -79,6 +78,9 @@ class ConversationMessageResource extends BaseResource
      * @param int $conversationId
      * @param array<int, AppendConversationMessageOptions> $messages
      * @return Response
+     *
+     * @throws FatalRequestException
+     * @throws RequestException
      */
     public function append(
         int $conversationId,
@@ -93,14 +95,14 @@ class ConversationMessageResource extends BaseResource
      * @param int $conversationId
      * @param int $messageId
      * @return Response
+     *
      * @throws FatalRequestException
      * @throws RequestException
      */
     public function delete(
         int $conversationId,
         int $messageId,
-    ): Response
-    {
+    ): Response {
         return $this->connector->send(new DeleteConversationMessageRequest($conversationId, $messageId));
     }
 }

@@ -32,6 +32,7 @@ class UpdateConversationMessageOptions implements Arrayable
 
     /**
      * Set content for message
+     *
      * @param string|null $content
      * @return $this
      */
@@ -45,7 +46,7 @@ class UpdateConversationMessageOptions implements Arrayable
     /**
      * Set meta for the message.
      *
-     * @param null|string $meta
+     * @param string|null $meta
      * @return $this
      */
     public function setMeta(?string $meta): self
@@ -58,7 +59,7 @@ class UpdateConversationMessageOptions implements Arrayable
     /**
      * Set the message type for the message.
      *
-     * @param ConversationMessageType $type
+     * @param ConversationMessageType|null $type
      * @return $this
      */
     public function setType(?ConversationMessageType $type): self

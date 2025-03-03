@@ -124,44 +124,59 @@ class AiaConnector extends Connector implements HasPagination
     private function makeMockClient(): MockClient
     {
         return new MockClient([
-            Requests\Conversations\CreateConversationRequest::class =>
-            $this->getMockResponse('Conversations/create', 201),
-            Requests\Conversations\DeleteConversationRequest::class =>
-            $this->getMockResponse('Conversations/delete', 204),
-            Requests\Conversations\UpdateConversationRequest::class =>
-            $this->getMockResponse('Conversations/update', 200),
-            Requests\Conversations\Messages\AppendConversationMessageRequest::class =>
-            $this->getMockResponse('Conversations/Messages/append', 200),
-            Requests\Conversations\Messages\CreateConversationMessageRequest::class =>
-            $this->getMockResponse('Conversations/Messages/create', 201),
-            Requests\Conversations\Messages\DeleteConversationMessageRequest::class =>
-            $this->getMockResponse('Conversations/Messages/delete', 204),
-            Requests\Conversations\Messages\RegenerateConversationMessageRequest::class =>
-            $this->getMockResponse('Conversations/Messages/regenerate', 201),
-            Requests\Conversations\Messages\UpdateConversationMessageRequest::class =>
-            $this->getMockResponse('Conversations/Messages/update', 200),
-            Requests\Images\TextToImageRequest::class =>
-            $this->getMockResponse('Images/text-to-image', 201),
-            Requests\Images\TextToImageWithFaceSwapRequest::class =>
-            $this->getMockResponse('Images/text-to-image-with-face-swap', 201),
-            Requests\Images\LorasRequest::class =>
-            $this->getMockResponse('Images/loras', 200),
-            Requests\Images\ModelsRequest::class =>
-                $this->getMockResponse('Images/models', 200),
-            Requests\Images\SchedulersRequest::class =>
-                $this->getMockResponse('Images/schedulers', 200),
-            Requests\LanguageModels\GetLanguageModelsRequest::class =>
-            $this->getMockResponse('LanguageModels/get-language-models', 200),
-            Requests\TextToSpeech\Voices\GetTextToSpeechVoicesRequest::class =>
-            $this->getMockResponse('TextToSpeech/Voices/index', 200),
-            Requests\TextToSpeech\Voices\SynthesizeRequest::class =>
-            $this->getMockResponse('TextToSpeech/Voices/synthesize', 200),
+            Requests\Conversations\CreateConversationRequest::class => $this->getMockResponse(
+                'Conversations/create',
+                201,
+            ),
+            Requests\Conversations\DeleteConversationRequest::class => $this->getMockResponse(
+                'Conversations/delete',
+                204,
+            ),
+            Requests\Conversations\UpdateConversationRequest::class => $this->getMockResponse(
+                'Conversations/update',
+            ),
+            Requests\Conversations\Messages\AppendConversationMessageRequest::class => $this->getMockResponse(
+                'Conversations/Messages/append',
+            ),
+            Requests\Conversations\Messages\CreateConversationMessageRequest::class => $this->getMockResponse(
+                'Conversations/Messages/create',
+                201,
+            ),
+            Requests\Conversations\Messages\DeleteConversationMessageRequest::class => $this->getMockResponse(
+                'Conversations/Messages/destroy',
+                204,
+            ),
+            Requests\Conversations\Messages\RegenerateConversationMessageRequest::class => $this->getMockResponse(
+                'Conversations/Messages/regenerate',
+                201,
+            ),
+            Requests\Conversations\Messages\UpdateConversationMessageRequest::class => $this->getMockResponse(
+                'Conversations/Messages/update',
+            ),
+            Requests\Images\TextToImageRequest::class => $this->getMockResponse('Images/text-to-image', 201),
+            Requests\Images\TextToImageWithFaceSwapRequest::class => $this->getMockResponse(
+                'Images/text-to-image-with-face-swap',
+            ),
+            Requests\Images\LorasRequest::class => $this->getMockResponse('Images/loras'),
+            Requests\Images\ModelsRequest::class => $this->getMockResponse('Images/models'),
+            Requests\Images\SchedulersRequest::class => $this->getMockResponse('Images/schedulers'),
+            Requests\LanguageModels\GetLanguageModelsRequest::class => $this->getMockResponse(
+                'LanguageModels/get-language-models',
+            ),
+            Requests\TextToSpeech\Voices\GetTextToSpeechVoicesRequest::class => $this->getMockResponse(
+                'TextToSpeech/Voices/index',
+            ),
+            Requests\TextToSpeech\Voices\SynthesizeRequest::class => $this->getMockResponse(
+                'TextToSpeech/Voices/synthesize',
+            ),
         ]);
     }
 
-    private function getMockResponse(string $name, int $status): MockResponse
+    private function getMockResponse(string $name, int $status = 200): MockResponse
     {
-        $body = file_get_contents(__DIR__ . "/SpoofResponses/$name-response.json");
-        return MockResponse::make($body, $status);
+        return MockResponse::make(
+            file_get_contents(__DIR__ . "/SpoofResponses/$name-response.json"),
+            $status,
+        );
     }
 }

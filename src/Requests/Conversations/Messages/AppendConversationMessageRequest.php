@@ -3,7 +3,6 @@
 namespace IntelligentsDev\AiaConnector\Requests\Conversations\Messages;
 
 use IntelligentsDev\AiaConnector\Requests\Conversations\Messages\Data\AppendConversationMessageOptions;
-use IntelligentsDev\AiaConnector\Requests\Conversations\Messages\Data\CreateConversationMessageOptions;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;

@@ -2,7 +2,6 @@
 
 namespace IntelligentsDev\AiaConnector\Resources;
 
-use IntelligentsDev\AiaConnector\Requests\Images\Data\CreateTextToImageOptions;
 use IntelligentsDev\AiaConnector\Requests\Images\Data\TextToImageOptions;
 use IntelligentsDev\AiaConnector\Requests\Images\Data\TextToImageWithFaceSwapOptions;
 use IntelligentsDev\AiaConnector\Requests\Images\LorasRequest;
@@ -21,7 +20,8 @@ class ImageResource extends BaseResource
     /**
      * Create text to image.
      *
-     * @param CreateTextToImageOptions $options
+     * @param string $prompt
+     * @param TextToImageOptions $options
      * @return Response
      *
      * @throws FatalRequestException
@@ -39,6 +39,8 @@ class ImageResource extends BaseResource
     /**
      * Create text to image with face swap.
      *
+     * @param string $prompt
+     * @param string $sourceUrl
      * @param TextToImageWithFaceSwapOptions $options
      * @return Response
      *
@@ -99,6 +101,7 @@ class ImageResource extends BaseResource
      *
      * @param int $imageId
      * @return Response
+     *
      * @throws FatalRequestException
      * @throws RequestException
      */

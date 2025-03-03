@@ -1,6 +1,6 @@
 {
     "name": "intelligents-dev/aia-connector",
-    "description": "SDK to communicatie with the AIA-service",
+    "description": "SDK to communicate with the AIA service",
     "type": "library",
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -19,15 +19,12 @@
         "phpunit/phpunit": "^11.3"
     },
     "scripts": {
-        "lint": [
-            "@php vendor/bin/pint --ansi",
-            "@php vendor/bin/phpstan analyse --verbose --ansi"
-        ]
+        "lint": "@php vendor/bin/pint --ansi"
     },
     "extra": {
         "laravel": {
             "providers": [
-                "IntelligentsDev\\AiaConnector\\Providers\\AiaConnectorServiceProvider"
+                "IntelligentsDev\\AiaConnector\\AiaConnectorServiceProvider"
             ]
         }
     }

@@ -15,6 +15,15 @@ class DeleteConversationMessageRequest extends Request
     protected Method $method = Method::DELETE;
 
     /**
+     * @param int $conversationId
+     * @param int $messageId
+     */
+    public function __construct(
+        protected int $conversationId,
+        protected int $messageId,
+    ) {}
+
+    /**
      * The endpoint to send the request to.
      *
      * @return string
@@ -23,13 +32,4 @@ class DeleteConversationMessageRequest extends Request
     {
         return vsprintf('/conversation/%d/message/%d', [$this->conversationId, $this->messageId]);
     }
-
-    /**
-     * @param int $conversationId
-     * @param int $messageId
-     */
-    public function __construct(
-        protected int $conversationId,
-        protected int $messageId,
-    ) {}
 }

@@ -2,7 +2,6 @@
 
 namespace IntelligentsDev\AiaConnector\Requests\Images;
 
-use IntelligentsDev\AiaConnector\Requests\Images\Data\CreateTextToImageWithFaceSwapOptions;
 use IntelligentsDev\AiaConnector\Requests\Images\Data\TextToImageWithFaceSwapOptions;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
@@ -20,6 +19,12 @@ class TextToImageWithFaceSwapRequest extends Request implements HasBody
      */
     protected Method $method = Method::POST;
 
+    public function __construct(
+        protected string $prompt,
+        protected string $sourceUrl,
+        protected TextToImageWithFaceSwapOptions $options,
+    ) {}
+
     /**
      * The endpoint to send the request to.
      *
@@ -29,15 +34,6 @@ class TextToImageWithFaceSwapRequest extends Request implements HasBody
     {
         return '/image/text-to-image-with-face-swap';
     }
-
-    /**
-     * @param CreateTextToImageWithFaceSwapOptions $options
-     */
-    public function __construct(
-        protected string $prompt,
-        protected string $sourceUrl,
-        protected TextToImageWithFaceSwapOptions $options,
-    ) {}
 
     /**
      * The default body for the request.

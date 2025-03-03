@@ -19,6 +19,11 @@ class UpdateConversationRequest extends Request implements HasBody
      */
     protected Method $method = Method::PUT;
 
+    public function __construct(
+        protected readonly int $conversationId,
+        protected UpdateConversationOptions $options,
+    ) {}
+
     /**
      * The endpoint to send the request to.
      *
@@ -28,14 +33,6 @@ class UpdateConversationRequest extends Request implements HasBody
     {
         return '/conversation/' . $this->conversationId;
     }
-
-    /**
-     * @param UpdateConversationOptions $options
-     */
-    public function __construct(
-        protected readonly int $conversationId,
-        protected UpdateConversationOptions $options,
-    ) {}
 
     /**
      * The default body for the request.

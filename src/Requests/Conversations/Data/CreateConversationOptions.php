@@ -18,7 +18,7 @@ class CreateConversationOptions implements Arrayable
     /**
      * Return the array representation of the conversation options.
      *
-     * @return string[]
+     * @return array
      */
     public function toArray(): array
     {

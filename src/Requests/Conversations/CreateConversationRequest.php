@@ -20,6 +20,13 @@ class CreateConversationRequest extends Request implements HasBody
     protected Method $method = Method::POST;
 
     /**
+     * @param CreateConversationOptions $options
+     */
+    public function __construct(
+        protected CreateConversationOptions $options,
+    ) {}
+
+    /**
      * The endpoint to send the request to.
      *
      * @return string
@@ -28,13 +35,6 @@ class CreateConversationRequest extends Request implements HasBody
     {
         return '/conversation';
     }
-
-    /**
-     * @param CreateConversationOptions $options
-     */
-    public function __construct(
-        protected CreateConversationOptions $options,
-    ) {}
 
     /**
      * The default body for the request.
