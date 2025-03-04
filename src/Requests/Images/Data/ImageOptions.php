@@ -40,6 +40,8 @@ abstract class ImageOptions implements Arrayable
 
     public ?string $breastPrompt = null;
 
+    public ?int $priority = null;
+
     /**
      * Return the array representation of the character options.
      *
@@ -60,6 +62,7 @@ abstract class ImageOptions implements Arrayable
             'lora_scale' => $this->loraScale,
             'shemale_strength' => $this->shemaleStrength,
             'breast_prompt' => $this->breastPrompt,
+            'priority' => $this->priority,
         ];
     }
 
@@ -219,6 +222,19 @@ abstract class ImageOptions implements Arrayable
     public function setBreastPrompt(?string $breastPrompt): self
     {
         $this->breastPrompt = $breastPrompt;
+
+        return $this;
+    }
+
+    /**
+     * Set the priority offset (adds or removes priority) on the image queue.
+     *
+     * @param int|null $priority
+     * @return $this
+     */
+    public function setPriority(?int $priority): self
+    {
+        $this->priority = $priority;
 
         return $this;
     }
