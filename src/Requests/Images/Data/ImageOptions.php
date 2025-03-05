@@ -19,6 +19,10 @@ abstract class ImageOptions implements Arrayable
 
     public ?int $priority = null;
 
+    public ?string $loraWeightName = null;
+
+    public ?float $loraScale = null;
+
     /**
      * This is only needed on model: bodies-xl-00001.safetensors, when we switch to the new model that Boris is training (expected to
      * arrive on October 2nd), we can clear this. This model doesn't need a negative prompt. It also doesn't need Lora's probably
@@ -42,6 +46,8 @@ abstract class ImageOptions implements Arrayable
             'webhook_urls' => $this->webhookUrls,
             'priority' => $this->priority,
             'negative_prompt' => $this->negativePrompt,
+            'lora_weight_name' => $this->loraWeightName,
+            'lora_scale' => $this->loraScale,
         ];
     }
 
@@ -123,6 +129,32 @@ abstract class ImageOptions implements Arrayable
     public function setNegativePrompt(?string $negativePrompt): self
     {
         $this->negativePrompt = $negativePrompt;
+
+        return $this;
+    }
+
+    /**
+     * Set the lora weight name for the image.
+     *
+     * @param string|null $loraWeightName
+     * @return $this
+     */
+    public function setLoraWeightName(?string $loraWeightName): self
+    {
+        $this->loraWeightName = $loraWeightName;
+
+        return $this;
+    }
+
+    /**
+     * Set the lora scale for the image.
+     *
+     * @param float|null $loraScale
+     * @return $this
+     */
+    public function setLoraScale(?float $loraScale): self
+    {
+        $this->loraScale = $loraScale;
 
         return $this;
     }
