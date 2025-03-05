@@ -20,6 +20,15 @@ abstract class ImageOptions implements Arrayable
     public ?int $priority = null;
 
     /**
+     * This is only needed on model: bodies-xl-00001.safetensors, when we switch to the new model that Boris is training (expected to
+     * arrive on October 2nd), we can clear this. This model doesn't need a negative prompt. It also doesn't need Lora's probably
+     * (contact Boris for more information on this)
+     *
+     * @var string|null
+     */
+    public ?string $negativePrompt = null;
+
+    /**
      * Return the array representation of the character options.
      *
      * @return string[]
@@ -32,6 +41,7 @@ abstract class ImageOptions implements Arrayable
             'guidance_scale' => $this->guidanceScale,
             'webhook_urls' => $this->webhookUrls,
             'priority' => $this->priority,
+            'negative_prompt' => $this->negativePrompt,
         ];
     }
 
@@ -100,6 +110,19 @@ abstract class ImageOptions implements Arrayable
     public function setPriority(?int $priority): self
     {
         $this->priority = $priority;
+
+        return $this;
+    }
+
+    /**
+     * Set the negative prompt for the image.
+     *
+     * @param string|null $negativePrompt
+     * @return $this
+     */
+    public function setNegativePrompt(?string $negativePrompt): self
+    {
+        $this->negativePrompt = $negativePrompt;
 
         return $this;
     }
