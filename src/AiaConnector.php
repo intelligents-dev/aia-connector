@@ -2,6 +2,23 @@
 
 namespace IntelligentsDev\AiaConnector;
 
+use IntelligentsDev\AiaConnector\Requests\Conversations\CreateConversationRequest;
+use IntelligentsDev\AiaConnector\Requests\Conversations\DeleteConversationRequest;
+use IntelligentsDev\AiaConnector\Requests\Conversations\Messages\AppendConversationMessageRequest;
+use IntelligentsDev\AiaConnector\Requests\Conversations\Messages\CreateConversationMessageRequest;
+use IntelligentsDev\AiaConnector\Requests\Conversations\Messages\DeleteConversationMessageRequest;
+use IntelligentsDev\AiaConnector\Requests\Conversations\Messages\RegenerateConversationMessageRequest;
+use IntelligentsDev\AiaConnector\Requests\Conversations\Messages\UpdateConversationMessageRequest;
+use IntelligentsDev\AiaConnector\Requests\Conversations\UpdateConversationRequest;
+use IntelligentsDev\AiaConnector\Requests\Images\CheckpointsRequest;
+use IntelligentsDev\AiaConnector\Requests\Images\LorasRequest;
+use IntelligentsDev\AiaConnector\Requests\Images\ModelsRequest;
+use IntelligentsDev\AiaConnector\Requests\Images\SchedulersRequest;
+use IntelligentsDev\AiaConnector\Requests\Images\TextToImageRequest;
+use IntelligentsDev\AiaConnector\Requests\Images\TextToImageWithFaceSwapRequest;
+use IntelligentsDev\AiaConnector\Requests\LanguageModels\GetLanguageModelsRequest;
+use IntelligentsDev\AiaConnector\Requests\TextToSpeech\Voices\GetTextToSpeechVoicesRequest;
+use IntelligentsDev\AiaConnector\Requests\TextToSpeech\Voices\SynthesizeRequest;
 use IntelligentsDev\AiaConnector\Resources\ConversationResource;
 use IntelligentsDev\AiaConnector\Resources\ImageResource;
 use IntelligentsDev\AiaConnector\Resources\LanguageModelResource;
@@ -77,8 +94,7 @@ class AiaConnector extends Connector implements HasPagination
      */
     public function paginate(Request $request): PagedPaginator
     {
-        return new class(connector: $this, request: $request) extends PagedPaginator
-        {
+        return new class(connector: $this, request: $request) extends PagedPaginator {
             protected function isLastPage(Response $response): bool
             {
                 return $response->json('meta.current_page') >= $response->json('meta.last_page');
@@ -126,51 +142,23 @@ class AiaConnector extends Connector implements HasPagination
     private function makeMockClient(): MockClient
     {
         return new MockClient([
-            Requests\Conversations\CreateConversationRequest::class => $this->getMockResponse(
-                'Conversations/create',
-                201,
-            ),
-            Requests\Conversations\DeleteConversationRequest::class => $this->getMockResponse(
-                'Conversations/delete',
-                204,
-            ),
-            Requests\Conversations\UpdateConversationRequest::class => $this->getMockResponse(
-                'Conversations/update',
-            ),
-            Requests\Conversations\Messages\AppendConversationMessageRequest::class => $this->getMockResponse(
-                'Conversations/Messages/append',
-            ),
-            Requests\Conversations\Messages\CreateConversationMessageRequest::class => $this->getMockResponse(
-                'Conversations/Messages/create',
-                201,
-            ),
-            Requests\Conversations\Messages\DeleteConversationMessageRequest::class => $this->getMockResponse(
-                'Conversations/Messages/destroy',
-                204,
-            ),
-            Requests\Conversations\Messages\RegenerateConversationMessageRequest::class => $this->getMockResponse(
-                'Conversations/Messages/regenerate',
-                201,
-            ),
-            Requests\Conversations\Messages\UpdateConversationMessageRequest::class => $this->getMockResponse(
-                'Conversations/Messages/update',
-            ),
-            Requests\Images\TextToImageRequest::class => $this->getMockResponse('Images/text-to-image', 201),
-            Requests\Images\TextToImageWithFaceSwapRequest::class => $this->getMockResponse(
-                'Images/text-to-image-with-face-swap',
-            ),
-            Requests\Images\LorasRequest::class => $this->getMockResponse('Images/loras'),
-            Requests\Images\ModelsRequest::class => $this->getMockResponse('Images/models'),
-            Requests\Images\SchedulersRequest::class => $this->getMockResponse('Images/schedulers'),
-            Requests\LanguageModels\GetLanguageModelsRequest::class => $this->getMockResponse(
-                'LanguageModels/get-language-models',
-            ),
-            Requests\TextToSpeech\Voices\GetTextToSpeechVoicesRequest::class => $this->getMockResponse(
-                'TextToSpeech/Voices/index',
-            ),
-            Requests\TextToSpeech\Voices\SynthesizeRequest::class => $this->getMockResponse(
-                'TextToSpeech/Voices/synthesize',
-            ),
+            CreateConversationRequest::class => $this->getMockResponse('Conversations/create', 201),
+            DeleteConversationRequest::class => $this->getMockResponse('Conversations/delete', 204),
+            UpdateConversationRequest::class => $this->getMockResponse('Conversations/update'),
+            AppendConversationMessageRequest::class => $this->getMockResponse('Conversations/Messages/append'),
+            CreateConversationMessageRequest::class => $this->getMockResponse('Conversations/Messages/create', 201),
+            DeleteConversationMessageRequest::class => $this->getMockResponse('Conversations/Messages/destroy', 204),
+            RegenerateConversationMessageRequest::class => $this->getMockResponse('Conversations/Messages/regenerate', 201),
+            UpdateConversationMessageRequest::class => $this->getMockResponse('Conversations/Messages/update'),
+            TextToImageRequest::class => $this->getMockResponse('Images/text-to-image', 201),
+            TextToImageWithFaceSwapRequest::class => $this->getMockResponse('Images/text-to-image-with-face-swap'),
+            LorasRequest::class => $this->getMockResponse('Images/loras'),
+            CheckpointsRequest::class => $this->getMockResponse('Images/checkpoints'),
+            ModelsRequest::class => $this->getMockResponse('Images/models'),
+            SchedulersRequest::class => $this->getMockResponse('Images/schedulers'),
+            GetLanguageModelsRequest::class => $this->getMockResponse('LanguageModels/get-language-models'),
+            GetTextToSpeechVoicesRequest::class => $this->getMockResponse('TextToSpeech/Voices/index'),
+            SynthesizeRequest::class => $this->getMockResponse('TextToSpeech/Voices/synthesize'),
         ]);
     }
 

@@ -2,6 +2,7 @@
 
 namespace IntelligentsDev\AiaConnector\Resources;
 
+use IntelligentsDev\AiaConnector\Requests\Images\CheckpointsRequest;
 use IntelligentsDev\AiaConnector\Requests\Images\Data\TextToImageOptions;
 use IntelligentsDev\AiaConnector\Requests\Images\Data\TextToImageWithFaceSwapOptions;
 use IntelligentsDev\AiaConnector\Requests\Images\LorasRequest;
@@ -68,6 +69,19 @@ class ImageResource extends BaseResource
     public function loras(
     ): Response {
         return $this->connector->send(new LorasRequest());
+    }
+
+    /**
+     * Get all Checkpoints
+     *
+     * @return Response
+     *
+     * @throws FatalRequestException
+     * @throws RequestException
+     */
+    public function checkpoints(
+    ): Response {
+        return $this->connector->send(new CheckpointsRequest());
     }
 
     /**
