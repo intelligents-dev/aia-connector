@@ -25,7 +25,7 @@ abstract class ImageOptions implements Arrayable
 
     public ?string $resolution = null;
 
-    public ?string $checkpoints = null;
+    public ?string $checkpoint = null;
 
     public ?string $visionCheck = null;
 
@@ -57,7 +57,7 @@ abstract class ImageOptions implements Arrayable
             'resolution' => $this->resolution,
             'lora_weight_name' => $this->loraWeightName,
             'lora_scale' => $this->loraScale,
-            'checkpoints' => $this->checkpoints,
+            'checkpoint' => $this->checkpoint,
             'vision_check' => $this->visionCheck,
             'skin_prompt' => $this->skinPrompt,
         ];
@@ -185,14 +185,14 @@ abstract class ImageOptions implements Arrayable
     }
 
     /**
-     * Set the checkpoints for the image.
+     * Set the checkpoint for the image.
      *
-     * @param string|null $checkpoints
+     * @param string|null $checkpoint
      * @return $this
      */
-    public function setCheckpoints(?string $checkpoints): self
+    public function setCheckpoint(?string $checkpoint): self
     {
-        $this->checkpoints = $checkpoints;
+        $this->checkpoint = $checkpoint;
 
         return $this;
     }
