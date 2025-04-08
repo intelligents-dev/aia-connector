@@ -25,6 +25,12 @@ abstract class ImageOptions implements Arrayable
 
     public ?string $resolution = null;
 
+    public ?string $checkpoints = null;
+
+    public ?string $visionCheck = null;
+
+    public ?string $skinPrompt = null;
+
     /**
      * This is only needed on model: bodies-xl-00001.safetensors, when we switch to the new model that Boris is training (expected to
      * arrive on October 2nd), we can clear this. This model doesn't need a negative prompt. It also doesn't need Lora's probably
@@ -51,6 +57,9 @@ abstract class ImageOptions implements Arrayable
             'resolution' => $this->resolution,
             'lora_weight_name' => $this->loraWeightName,
             'lora_scale' => $this->loraScale,
+            'checkpoints' => $this->checkpoints,
+            'vision_check' => $this->visionCheck,
+            'skin_prompt' => $this->skinPrompt,
         ];
     }
 
@@ -171,6 +180,45 @@ abstract class ImageOptions implements Arrayable
     public function setResolution(?string $resolution): self
     {
         $this->resolution = $resolution;
+
+        return $this;
+    }
+
+    /**
+     * Set the checkpoints for the image.
+     *
+     * @param string|null $checkpoints
+     * @return $this
+     */
+    public function setCheckpoints(?string $checkpoints): self
+    {
+        $this->checkpoints = $checkpoints;
+
+        return $this;
+    }
+
+    /**
+     * Set the vision check for the image.
+     *
+     * @param string|null $visionCheck
+     * @return $this
+     */
+    public function setVisionCheck(?string $visionCheck): self
+    {
+        $this->visionCheck = $visionCheck;
+
+        return $this;
+    }
+
+    /**
+     * Set the skin prompt for the image.
+     *
+     * @param string|null $skinPrompt
+     * @return $this
+     */
+    public function setSkinPrompt(?string $skinPrompt): self
+    {
+        $this->skinPrompt = $skinPrompt;
 
         return $this;
     }
