@@ -21,6 +21,7 @@ use IntelligentsDev\AiaConnector\Requests\TextToSpeech\Voices\GetTextToSpeechVoi
 use IntelligentsDev\AiaConnector\Requests\TextToSpeech\Voices\SynthesizeRequest;
 use IntelligentsDev\AiaConnector\Resources\ConversationResource;
 use IntelligentsDev\AiaConnector\Resources\ImageResource;
+use IntelligentsDev\AiaConnector\Resources\JobResource;
 use IntelligentsDev\AiaConnector\Resources\LanguageModelResource;
 use IntelligentsDev\AiaConnector\Resources\TextToSpeechResource;
 use Saloon\Http\Auth\TokenAuthenticator;
@@ -105,6 +106,14 @@ class AiaConnector extends Connector implements HasPagination
                 return $response->json('data');
             }
         };
+    }
+
+    /**
+     * @return JobResource
+     */
+    public function jobs(): JobResource
+    {
+        return new JobResource($this);
     }
 
     /**
