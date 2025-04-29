@@ -4,8 +4,6 @@ namespace IntelligentsDev\AiaConnector\Requests\Images\Data;
 
 class TextToImageWithFaceSwapOptions extends ImageOptions
 {
-    public ?string $modelName = null;
-
     public ?float $startAt = null;
 
     public ?float $endAt = null;
@@ -24,7 +22,6 @@ class TextToImageWithFaceSwapOptions extends ImageOptions
     public function toArray(): array
     {
         return [
-            'model_name' => $this->modelName,
             'start_at' => $this->startAt,
             'end_at' => $this->endAt,
             'weight' => $this->weight,
@@ -32,19 +29,6 @@ class TextToImageWithFaceSwapOptions extends ImageOptions
             'breast_prompt' => $this->breastPrompt,
             ...parent::toArray(),
         ];
-    }
-
-    /**
-     * Set the model name for the image.
-     *
-     * @param string|null $modelName
-     * @return $this
-     */
-    public function setModelName(?string $modelName): self
-    {
-        $this->modelName = $modelName;
-
-        return $this;
     }
 
     /**

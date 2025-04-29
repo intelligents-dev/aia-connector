@@ -9,6 +9,8 @@ abstract class ImageOptions implements Arrayable
 {
     use Makeable;
 
+    public ?string $modelName = null;
+
     public ?string $schedulerName = null;
 
     public ?int $numInferenceSteps = null;
@@ -48,6 +50,7 @@ abstract class ImageOptions implements Arrayable
     public function toArray(): array
     {
         return [
+            'model_name' => $this->modelName,
             'scheduler_name' => $this->schedulerName,
             'num_inference_steps' => $this->numInferenceSteps,
             'guidance_scale' => $this->guidanceScale,
@@ -61,6 +64,19 @@ abstract class ImageOptions implements Arrayable
             'vision_check' => $this->visionCheck,
             'skin_prompt' => $this->skinPrompt,
         ];
+    }
+
+    /**
+     * Set the model name for the image.
+     *
+     * @param string|null $modelName
+     * @return $this
+     */
+    public function setModelName(?string $modelName): self
+    {
+        $this->modelName = $modelName;
+
+        return $this;
     }
 
     /**
