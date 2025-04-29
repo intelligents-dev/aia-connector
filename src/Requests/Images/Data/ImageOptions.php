@@ -33,6 +33,8 @@ abstract class ImageOptions implements Arrayable
 
     public ?string $skinPrompt = null;
 
+    public ?bool $isNude = false;
+
     /**
      * This is only needed on model: bodies-xl-00001.safetensors, when we switch to the new model that Boris is training (expected to
      * arrive on October 2nd), we can clear this. This model doesn't need a negative prompt. It also doesn't need Lora's probably
@@ -63,6 +65,7 @@ abstract class ImageOptions implements Arrayable
             'checkpoint' => $this->checkpoint,
             'vision_check' => $this->visionCheck,
             'skin_prompt' => $this->skinPrompt,
+            'is_nude' => $this->isNude,
         ];
     }
 
@@ -235,6 +238,19 @@ abstract class ImageOptions implements Arrayable
     public function setSkinPrompt(?string $skinPrompt): self
     {
         $this->skinPrompt = $skinPrompt;
+
+        return $this;
+    }
+
+    /**
+     * Set the nudity option for the image.
+     *
+     * @param bool|null $isNude
+     * @return $this
+     */
+    public function setIsNude(?bool $isNude): self
+    {
+        $this->isNude = $isNude ?? false;
 
         return $this;
     }
