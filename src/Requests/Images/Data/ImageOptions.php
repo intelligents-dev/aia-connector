@@ -50,7 +50,7 @@ abstract class ImageOptions implements Arrayable
     public function toArray(): array
     {
         return [
-            'model_name' => $this->modelName,
+            'model_name' => $this->modelName, 
             'scheduler_name' => $this->schedulerName,
             'num_inference_steps' => $this->numInferenceSteps,
             'guidance_scale' => $this->guidanceScale,
