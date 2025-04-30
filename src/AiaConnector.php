@@ -10,6 +10,7 @@ use IntelligentsDev\AiaConnector\Requests\Conversations\Messages\DeleteConversat
 use IntelligentsDev\AiaConnector\Requests\Conversations\Messages\RegenerateConversationMessageRequest;
 use IntelligentsDev\AiaConnector\Requests\Conversations\Messages\UpdateConversationMessageRequest;
 use IntelligentsDev\AiaConnector\Requests\Conversations\UpdateConversationRequest;
+use IntelligentsDev\AiaConnector\Requests\Images\CancelImageJobsRequest;
 use IntelligentsDev\AiaConnector\Requests\Images\CheckpointsRequest;
 use IntelligentsDev\AiaConnector\Requests\Images\LorasRequest;
 use IntelligentsDev\AiaConnector\Requests\Images\ModelsRequest;
@@ -163,6 +164,7 @@ class AiaConnector extends Connector implements HasPagination
             TextToImageWithFaceSwapRequest::class => $this->getMockResponse('Images/text-to-image-with-face-swap'),
             LorasRequest::class => $this->getMockResponse('Images/loras'),
             CheckpointsRequest::class => $this->getMockResponse('Images/checkpoints'),
+            CancelImageJobsRequest::class => $this->getMockResponse('images/cancel'),
             ModelsRequest::class => $this->getMockResponse('Images/models'),
             SchedulersRequest::class => $this->getMockResponse('Images/schedulers'),
             GetLanguageModelsRequest::class => $this->getMockResponse('LanguageModels/get-language-models'),

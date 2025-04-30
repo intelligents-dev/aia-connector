@@ -2,6 +2,7 @@
 
 namespace IntelligentsDev\AiaConnector\Resources;
 
+use IntelligentsDev\AiaConnector\Requests\Images\CancelImageJobsRequest;
 use IntelligentsDev\AiaConnector\Requests\Images\CheckpointsRequest;
 use IntelligentsDev\AiaConnector\Requests\Images\Data\TextToImageOptions;
 use IntelligentsDev\AiaConnector\Requests\Images\Data\TextToImageWithFaceSwapOptions;
@@ -56,6 +57,11 @@ class ImageResource extends BaseResource
         return $this->connector->send(
             new TextToImageWithFaceSwapRequest($prompt, $sourceUrl, $options),
         );
+    }
+
+    public function cancelImageJobs(array $imageIds): Response
+    {
+        return $this->connector->send(new CancelImageJobsRequest($imageIds));
     }
 
     /**
