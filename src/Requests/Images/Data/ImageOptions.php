@@ -35,6 +35,8 @@ abstract class ImageOptions implements Arrayable
 
     public ?bool $isNude = false;
 
+    public ?array $metaData = null;
+
     /**
      * This is only needed on model: bodies-xl-00001.safetensors, when we switch to the new model that Boris is training (expected to
      * arrive on October 2nd), we can clear this. This model doesn't need a negative prompt. It also doesn't need Lora's probably
@@ -52,7 +54,7 @@ abstract class ImageOptions implements Arrayable
     public function toArray(): array
     {
         return [
-            'model_name' => $this->modelName, 
+            'model_name' => $this->modelName,
             'scheduler_name' => $this->schedulerName,
             'num_inference_steps' => $this->numInferenceSteps,
             'guidance_scale' => $this->guidanceScale,
@@ -66,6 +68,7 @@ abstract class ImageOptions implements Arrayable
             'vision_check' => $this->visionCheck,
             'skin_prompt' => $this->skinPrompt,
             'is_nude' => $this->isNude,
+            'metaData' => $this->metaData,
         ];
     }
 
@@ -251,6 +254,19 @@ abstract class ImageOptions implements Arrayable
     public function setIsNude(?bool $isNude): self
     {
         $this->isNude = $isNude ?? false;
+
+        return $this;
+    }
+
+    /**
+     * Set the metadata for the image.
+     *
+     * @param array|null $metaData
+     * @return $this
+     */
+    public function setMetaData(?array $metaData): self
+    {
+        $this->metaData = $metaData;
 
         return $this;
     }
