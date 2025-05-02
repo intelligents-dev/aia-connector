@@ -68,7 +68,7 @@ abstract class ImageOptions implements Arrayable
             'vision_check' => $this->visionCheck,
             'skin_prompt' => $this->skinPrompt,
             'is_nude' => $this->isNude,
-            'metaData' => $this->metaData,
+            'meta' => $this->metaData,
         ];
     }
 
@@ -259,12 +259,12 @@ abstract class ImageOptions implements Arrayable
     }
 
     /**
-     * Set the metadata for the image.
+     * Set the meta for the image.
      *
      * @param array|null $metaData
      * @return $this
      */
-    public function setMetaData(?array $metaData): self
+    public function setMeta(?array $metaData): self
     {
         $this->metaData = $metaData;
 
