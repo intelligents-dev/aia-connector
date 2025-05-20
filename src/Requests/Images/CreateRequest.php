@@ -2,13 +2,15 @@
 
 namespace IntelligentsDev\AiaConnector\Requests\Images;
 
-use IntelligentsDev\AiaConnector\Requests\Images\Data\TextToImageOptions;
+use Exception;
+use IntelligentsDev\AiaConnector\Enums\Pipeline;
+use IntelligentsDev\AiaConnector\Requests\Images\Data\ImageOptions;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Traits\Body\HasJsonBody;
 
-class TextToImageRequest extends Request implements HasBody
+class CreateRequest extends Request implements HasBody
 {
     use HasJsonBody;
 
@@ -19,14 +21,21 @@ class TextToImageRequest extends Request implements HasBody
      */
     protected Method $method = Method::POST;
 
+    protected Pipeline $pipeline;
+
     /**
-     * @param string $prompt
-     * @param TextToImageOptions $options
+     * @param Pipeline|string $pipeline
+     * @param ImageOptions $options
+     * @throws Exception
      */
     public function __construct(
-        protected string $prompt,
-        protected TextToImageOptions $options,
-    ) {}
+        Pipeline|string $pipeline,
+        protected ImageOptions $options
+    )
+    {
+        $this->pipeline = $pipeline instanceof Pipeline ? $pipeline : Pipeline::tryFrom($pipeline) ??
+            throw new Exception('Unknown pipeline');
+    }
 
     /**
      * The endpoint to send the request to.
@@ -35,7 +44,7 @@ class TextToImageRequest extends Request implements HasBody
      */
     public function resolveEndpoint(): string
     {
-        return '/image/text-to-image';
+        return '/image/' . $this->pipeline->value;
     }
 
     /**
@@ -45,9 +54,6 @@ class TextToImageRequest extends Request implements HasBody
      */
     protected function defaultBody(): array
     {
-        return [
-            'prompt' => $this->prompt,
-            ...$this->options->toArray(),
-        ];
+        return $this->options->toArray();
     }
 }
