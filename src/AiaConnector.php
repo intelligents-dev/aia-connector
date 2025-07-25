@@ -11,12 +11,7 @@ use IntelligentsDev\AiaConnector\Requests\Conversations\Messages\RegenerateConve
 use IntelligentsDev\AiaConnector\Requests\Conversations\Messages\UpdateConversationMessageRequest;
 use IntelligentsDev\AiaConnector\Requests\Conversations\UpdateConversationRequest;
 use IntelligentsDev\AiaConnector\Requests\Images\CancelImageJobsRequest;
-use IntelligentsDev\AiaConnector\Requests\Images\CheckpointsRequest;
-use IntelligentsDev\AiaConnector\Requests\Images\LorasRequest;
 use IntelligentsDev\AiaConnector\Requests\Images\ModelsRequest;
-use IntelligentsDev\AiaConnector\Requests\Images\SchedulersRequest;
-use IntelligentsDev\AiaConnector\Requests\Images\TextToImageRequest;
-use IntelligentsDev\AiaConnector\Requests\Images\TextToImageWithFaceSwapRequest;
 use IntelligentsDev\AiaConnector\Requests\LanguageModels\GetLanguageModelsRequest;
 use IntelligentsDev\AiaConnector\Requests\TextToSpeech\Voices\GetTextToSpeechVoicesRequest;
 use IntelligentsDev\AiaConnector\Requests\TextToSpeech\Voices\SynthesizeRequest;
@@ -160,13 +155,8 @@ class AiaConnector extends Connector implements HasPagination
             DeleteConversationMessageRequest::class => $this->getMockResponse('Conversations/Messages/destroy', 204),
             RegenerateConversationMessageRequest::class => $this->getMockResponse('Conversations/Messages/regenerate', 201),
             UpdateConversationMessageRequest::class => $this->getMockResponse('Conversations/Messages/update'),
-            TextToImageRequest::class => $this->getMockResponse('Images/text-to-image', 201),
-            TextToImageWithFaceSwapRequest::class => $this->getMockResponse('Images/text-to-image-with-face-swap'),
-            LorasRequest::class => $this->getMockResponse('Images/loras'),
-            CheckpointsRequest::class => $this->getMockResponse('Images/checkpoints'),
             CancelImageJobsRequest::class => $this->getMockResponse('images/cancel'),
             ModelsRequest::class => $this->getMockResponse('Images/models'),
-            SchedulersRequest::class => $this->getMockResponse('Images/schedulers'),
             GetLanguageModelsRequest::class => $this->getMockResponse('LanguageModels/get-language-models'),
             GetTextToSpeechVoicesRequest::class => $this->getMockResponse('TextToSpeech/Voices/index'),
             SynthesizeRequest::class => $this->getMockResponse('TextToSpeech/Voices/synthesize'),

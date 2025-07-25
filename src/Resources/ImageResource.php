@@ -4,6 +4,7 @@ namespace IntelligentsDev\AiaConnector\Resources;
 
 use Exception;
 use IntelligentsDev\AiaConnector\Enums\Pipeline;
+use IntelligentsDev\AiaConnector\Requests\Images\CancelImageJobsRequest;
 use IntelligentsDev\AiaConnector\Requests\Images\CreateRequest;
 use IntelligentsDev\AiaConnector\Requests\Images\Data\ImageOptions;
 use IntelligentsDev\AiaConnector\Requests\Images\ModelsRequest;
@@ -60,5 +61,10 @@ class ImageResource extends BaseResource
     public function models(): Response
     {
         return $this->connector->send(new ModelsRequest());
+    }
+
+    public function cancelImageJobs(array $imageIds): Response
+    {
+        return $this->connector->send(new CancelImageJobsRequest($imageIds));
     }
 }
