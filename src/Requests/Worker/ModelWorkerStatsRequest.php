@@ -39,8 +39,6 @@ class ModelWorkerStatsRequest extends Request implements HasBody
      */
     protected function defaultBody(): array
     {
-        return [
-            'model_worker_groups' => $this->modelWorkerGroups,
-        ];
+        return ['model_worker_groups' => $this->modelWorkerGroups];
     }
 }
