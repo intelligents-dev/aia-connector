@@ -2,7 +2,6 @@
 
 namespace IntelligentsDev\AiaConnector\Resources;
 
-use IntelligentsDev\AiaConnector\Requests\Images\Data\TextToImageOptions;
 use IntelligentsDev\AiaConnector\Requests\Jobs\GetJobsRequest;
 use Saloon\Exceptions\Request\FatalRequestException;
 use Saloon\Exceptions\Request\RequestException;
@@ -22,10 +21,25 @@ class JobResource extends BaseResource
      */
     public function get(
         array $queueableIds = [],
-    ): Response
-    {
+    ): Response {
         return $this->connector->send(
             new GetJobsRequest($queueableIds),
+        );
+    }
+
+    /**
+     * Get estimation for jobs.
+     *
+     * @param array $jobModelGroups
+     * @return Response
+     *
+     * @throws FatalRequestException
+     * @throws RequestException
+     */
+    public function getEstimations(array $jobModelGroups = []): Response
+    {
+        return $this->connector->send(
+            new GetJobsRequest($jobModelGroups),
         );
     }
 }
