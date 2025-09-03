@@ -2,6 +2,7 @@
 
 namespace IntelligentsDev\AiaConnector\Resources;
 
+use IntelligentsDev\AiaConnector\Requests\Jobs\GetEstimationsRequest;
 use IntelligentsDev\AiaConnector\Requests\Jobs\GetJobsRequest;
 use Saloon\Exceptions\Request\FatalRequestException;
 use Saloon\Exceptions\Request\RequestException;
@@ -39,7 +40,7 @@ class JobResource extends BaseResource
     public function getEstimations(array $jobModelGroups = []): Response
     {
         return $this->connector->send(
-            new GetJobsRequest($jobModelGroups),
+            new GetEstimationsRequest($jobModelGroups),
         );
     }
 }
