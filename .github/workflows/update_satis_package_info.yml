@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Update package in satis
-        uses: intelligents-dev/satis/.github/actions/update-package@master
+        uses: intelligents-dev/satis/.github/update-package@master
         with:
           aws-access-key-id: ${{ secrets.SATIS_AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.SATIS_AWS_SECRET_ACCESS_KEY }}
