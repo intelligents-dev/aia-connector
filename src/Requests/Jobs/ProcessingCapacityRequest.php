@@ -12,7 +12,7 @@ class ProcessingCapacityRequest extends Request implements HasBody
     use HasJsonBody;
     /**
      * The method to send the request with.
-     *
+     * 
      * @var Method
      */
     protected Method $method = Method::GET;
