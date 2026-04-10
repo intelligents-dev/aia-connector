@@ -4,6 +4,7 @@ namespace IntelligentsDev\AiaConnector\Resources;
 
 use IntelligentsDev\AiaConnector\Requests\Jobs\GetEstimationsRequest;
 use IntelligentsDev\AiaConnector\Requests\Jobs\GetJobsRequest;
+use IntelligentsDev\AiaConnector\Requests\Jobs\ProcessingCapacityRequest;
 use Saloon\Exceptions\Request\FatalRequestException;
 use Saloon\Exceptions\Request\RequestException;
 use Saloon\Http\BaseResource;
@@ -42,5 +43,18 @@ class JobResource extends BaseResource
         return $this->connector->send(
             new GetEstimationsRequest($jobModelGroups),
         );
+    }
+
+    /**
+     * Get overall processing capacity.
+     *
+     * @return Response
+     *
+     * @throws FatalRequestException
+     * @throws RequestException
+     */
+    public function getProcessingCapacity(): Response
+    {
+        return $this->connector->send(new ProcessingCapacityRequest());
     }
 }
