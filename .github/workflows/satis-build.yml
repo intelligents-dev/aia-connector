@@ -11,4 +11,6 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Run Satis build
-        run: ~/satis.amt.center/build.sh ${{ github.repository }}
+        run: |
+          ~/satis.amt.center/build.sh ${{ github.repository }} \
+            || ~/satis.amt.center/build.sh globalmoderators/${{ github.event.repository.name }}
