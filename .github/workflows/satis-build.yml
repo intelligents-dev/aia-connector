@@ -1,0 +1,16 @@
+name: Satis Build
+on:
+  push:
+    branches:
+      - '**'
+    tags:
+      - '**'
+jobs:
+  satis:
+    name: Deploy to Satis
+    runs-on: self-hosted
+    steps:
+      - name: Run Satis build
+        run: |
+          ~/satis.amt.center/build.sh ${{ github.repository }} \
+            || ~/satis.amt.center/build.sh globalmoderators/${{ github.event.repository.name }}
