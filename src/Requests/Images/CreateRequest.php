@@ -43,7 +43,7 @@ class CreateRequest extends Request implements HasBody
             return $pipeline;
         }
 
-        if ($pipeline === '') {
+        if (trim($pipeline) === '') {
             throw new InvalidArgumentException('pipeline must not be empty');
         }
 

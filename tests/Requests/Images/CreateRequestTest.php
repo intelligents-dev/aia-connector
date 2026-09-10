@@ -34,9 +34,17 @@ class CreateRequestTest extends TestCase
         new CreateRequest('', new ImageOptions());
     }
 
+    public function test_a_whitespace_only_pipeline_string_throws_an_invalid_argument_exception(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessageMatches('/pipeline/i');
+
+        new CreateRequest('   ', new ImageOptions());
+    }
+
     public function test_a_pipeline_instance_is_used_as_is(): void
     {
-        $request = new CreateRequest(Pipeline::TextToVideoFrames, new ImageOptions());
+        $request = new CreateRequest(Pipeline::TEXT_TO_VIDEO_FRAMES, new ImageOptions());
 
         $this->assertSame('/image/text-to-video-frames', $request->resolveEndpoint());
     }
