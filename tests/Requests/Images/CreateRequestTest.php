@@ -48,4 +48,11 @@ class CreateRequestTest extends TestCase
 
         $this->assertSame('/image/text-to-video-frames', $request->resolveEndpoint());
     }
+
+    public function test_the_reference_image_pipeline_posts_to_its_own_route(): void
+    {
+        $request = new CreateRequest(Pipeline::IMAGE_TO_IMAGE_WITH_REFERENCE_IMAGE, new ImageOptions());
+
+        $this->assertSame('/image/image-to-image-with-reference-image', $request->resolveEndpoint());
+    }
 }
