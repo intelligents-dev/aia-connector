@@ -55,4 +55,17 @@ class CreateRequestTest extends TestCase
 
         $this->assertSame('/image/pussy-swap', $request->resolveEndpoint());
     }
+
+    public function test_the_three_existing_routes_stay_the_same(): void
+    {
+        $expected = [
+            '/image/text-to-image' => Pipeline::TEXT_TO_IMAGE,
+            '/image/text-to-image-with-face-swap' => Pipeline::TEXT_TO_IMAGE_WITH_FACE_SWAP,
+            '/image/text-to-video-frames' => Pipeline::TEXT_TO_VIDEO_FRAMES,
+        ];
+
+        foreach ($expected as $endpoint => $pipeline) {
+            $this->assertSame($endpoint, (new CreateRequest($pipeline, new ImageOptions()))->resolveEndpoint());
+        }
+    }
 }
