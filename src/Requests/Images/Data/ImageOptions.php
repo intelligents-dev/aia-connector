@@ -31,7 +31,7 @@ class ImageOptions implements Arrayable
             'webhook_urls' => $this->webhookUrls,
             'priority' => $this->priority,
             'meta' => $this->meta,
-            ...$this->data,
+            ...($this->data ?? []),
         ];
     }
 
