@@ -1,16 +1,68 @@
+# Canonical Satis publish workflow for every package repo (INT-2235).
+#
+# Copy this file unchanged to .github/workflows/satis-build.yml in the package
+# repo, and add the package to satis.json. Nothing in it is repo-specific: the
+# package name comes from the repo's own composer.json at the pushed commit.
+#
+# Lives under .github/ so deploy_satis_configuration.yml (cp -r ./*) does not
+# copy it to the satis server.
 name: Satis Build
+
 on:
   push:
     branches:
       - '**'
     tags:
       - '**'
+
+permissions:
+  contents: read
+
 jobs:
   satis:
     name: Deploy to Satis
     runs-on: self-hosted
     steps:
       - name: Run Satis build
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          ~/satis.amt.center/build.sh ${{ github.repository }} \
-            || ~/satis.amt.center/build.sh globalmoderators/${{ github.event.repository.name }}
+          set -euo pipefail
+
+          # build.sh filters on the Composer package name. That is neither the
+          # GitHub path nor always globalmoderators/<repo>: five packages publish
+          # as intelligents-dev/*, and ai-guidelines-laravel publishes as
+          # laravel-ai-guidelines (INT-2052, INT-2235). Read the real name from
+          # composer.json at the pushed commit instead of assuming either.
+          php="$(command -v php8.4 || command -v php)"
+          package="$(
+            curl -fsS \
+              -H "Authorization: Bearer $GH_TOKEN" \
+              -H "Accept: application/vnd.github.raw+json" \
+              "$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/contents/composer.json?ref=$GITHUB_SHA" \
+            | "$php" -r '$c = json_decode(stream_get_contents(STDIN), true); echo is_array($c) ? ($c["name"] ?? "") : "";'
+          )"
+          if [ -z "$package" ]; then
+            echo "::error::no package name in composer.json at $GITHUB_SHA"
+            exit 1
+          fi
+          echo "Publishing $package"
+
+          log="$(mktemp)"
+          ~/satis.amt.center/build.sh "$package" 2>&1 | tee "$log"
+
+          # A green build.sh is not evidence that anything was published: satis
+          # exits 0 and rewrites the index from cache even when its filter
+          # selected no package. transactions-api-connector 2.1.0 and
+          # evalid-api-connector 1.1.0 both "built" this way and never reached
+          # the registry. Require this package to have been dumped on every
+          # push, and the exact version on a tag.
+          if ! grep -qF "Dumping package '$package' in version " "$log"; then
+            echo "::error::satis selected no package named $package; is it in satis.json under that name?"
+            exit 1
+          fi
+          if [ "$GITHUB_REF_TYPE" = "tag" ] \
+            && ! grep -qF "Dumping package '$package' in version '$GITHUB_REF_NAME'." "$log"; then
+            echo "::error::$GITHUB_REF_NAME was not published to satis"
+            exit 1
+          fi
