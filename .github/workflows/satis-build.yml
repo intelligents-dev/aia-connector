@@ -56,13 +56,25 @@ jobs:
           # selected no package. transactions-api-connector 2.1.0 and
           # evalid-api-connector 1.1.0 both "built" this way and never reached
           # the registry. Require this package to have been dumped on every
-          # push, and the exact version on a tag.
+          # push, and the pushed ref's own version: the tag itself, or the
+          # branch as Composer names it: dev-<branch> with any # as +, except a
+          # version-like branch such as 1.x or v2.0, which becomes 1.x-dev or
+          # v2.0.x-dev.
           if ! grep -qF "Dumping package '$package' in version " "$log"; then
             echo "::error::satis selected no package named $package; is it in satis.json under that name?"
             exit 1
           fi
-          if [ "$GITHUB_REF_TYPE" = "tag" ] \
-            && ! grep -qF "Dumping package '$package' in version '$GITHUB_REF_NAME'." "$log"; then
+          dumped="Dumping package '$package' in version"
+          if [ "$GITHUB_REF_TYPE" = "tag" ]; then
+            versions=(-e "$dumped '$GITHUB_REF_NAME'.")
+          else
+            versions=(
+              -e "$dumped 'dev-${GITHUB_REF_NAME//#/+}'."
+              -e "$dumped '$GITHUB_REF_NAME-dev'."
+              -e "$dumped '$GITHUB_REF_NAME.x-dev'."
+            )
+          fi
+          if ! grep -qF "${versions[@]}" "$log"; then
             echo "::error::$GITHUB_REF_NAME was not published to satis"
             exit 1
           fi
