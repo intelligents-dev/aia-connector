@@ -8,8 +8,8 @@
         }
     ],
     "links": {
-        "first": "https://service.aia.test/api/image/models?page=1",
-        "last": "https://service.aia.test/api/image/models?page=1",
+        "first": "https://service.aia.test/api/image/workflows?page=1",
+        "last": "https://service.aia.test/api/image/workflows?page=1",
         "prev": null,
         "next": null
     },
@@ -24,7 +24,7 @@
                 "active": false
             },
             {
-                "url": "https://service.aia.test/api/image/models?page=1",
+                "url": "https://service.aia.test/api/image/workflows?page=1",
                 "label": "1",
                 "active": true
             },
@@ -34,7 +34,7 @@
                 "active": false
             }
         ],
-        "path": "https://service.aia.test/api/image/models",
+        "path": "https://service.aia.test/api/image/workflows",
         "per_page": 15,
         "to": 1,
         "total": 1

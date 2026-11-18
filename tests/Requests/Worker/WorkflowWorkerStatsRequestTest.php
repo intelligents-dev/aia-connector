@@ -37,6 +37,16 @@ class WorkflowWorkerStatsRequestTest extends TestCase
         );
     }
 
+    public function test_extra_group_fields_are_kept(): void
+    {
+        $request = new WorkflowWorkerStatsRequest([['model_key' => 'a', 'worker_id' => 7]]);
+
+        $this->assertEquals(
+            ['workflow_worker_groups' => [['workflow_key' => 'a', 'worker_id' => 7]]],
+            $request->body()->all(),
+        );
+    }
+
     public function test_the_old_request_is_unchanged(): void
     {
         $request = new ModelWorkerStatsRequest([['model_key' => 'a']]);

@@ -77,6 +77,16 @@ class ImageOptionsTest extends TestCase
         $this->assertArrayNotHasKey('model_name', $body);
     }
 
+    public function test_a_directly_assigned_model_name_property_is_sent_as_workflow_name(): void
+    {
+        $options = new ImageOptions();
+        $options->modelName = 'x';
+        $body = $options->toArray();
+
+        $this->assertSame('x', $body['workflow_name']);
+        $this->assertArrayNotHasKey('model_name', $body);
+    }
+
     public function test_explicit_name_wins_over_data_names(): void
     {
         $body = (new ImageOptions())

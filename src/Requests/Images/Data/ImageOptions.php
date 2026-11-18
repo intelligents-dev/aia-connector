@@ -40,6 +40,7 @@ class ImageOptions implements Arrayable
     private function resolveWorkflowName(): ?string
     {
         return $this->workflowName
+            ?: $this->modelName
             ?: ($this->data['workflow_name'] ?? null)
             ?: ($this->data['model_name'] ?? null)
             ?: null;
