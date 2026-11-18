@@ -4,6 +4,7 @@ namespace IntelligentsDev\AiaConnector\Resources;
 
 use IntelligentsDev\AiaConnector\Requests\Jobs\GetEstimationsRequest;
 use IntelligentsDev\AiaConnector\Requests\Jobs\GetJobsRequest;
+use IntelligentsDev\AiaConnector\Requests\Jobs\GetWorkflowEstimationsRequest;
 use IntelligentsDev\AiaConnector\Requests\Jobs\ProcessingCapacityRequest;
 use Saloon\Exceptions\Request\FatalRequestException;
 use Saloon\Exceptions\Request\RequestException;
@@ -42,6 +43,13 @@ class JobResource extends BaseResource
     {
         return $this->connector->send(
             new GetEstimationsRequest($jobModelGroups),
+        );
+    }
+
+    public function getWorkflowEstimations(array $jobWorkflowGroups = []): Response
+    {
+        return $this->connector->send(
+            new GetWorkflowEstimationsRequest($jobWorkflowGroups),
         );
     }
 

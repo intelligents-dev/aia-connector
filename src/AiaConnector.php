@@ -12,6 +12,7 @@ use IntelligentsDev\AiaConnector\Requests\Conversations\Messages\UpdateConversat
 use IntelligentsDev\AiaConnector\Requests\Conversations\UpdateConversationRequest;
 use IntelligentsDev\AiaConnector\Requests\Images\CancelImageJobsRequest;
 use IntelligentsDev\AiaConnector\Requests\Images\ModelsRequest;
+use IntelligentsDev\AiaConnector\Requests\Images\WorkflowsRequest;
 use IntelligentsDev\AiaConnector\Requests\LanguageModels\GetLanguageModelsRequest;
 use IntelligentsDev\AiaConnector\Requests\TextToSpeech\Voices\GetTextToSpeechVoicesRequest;
 use IntelligentsDev\AiaConnector\Requests\TextToSpeech\Voices\SynthesizeRequest;
@@ -157,6 +158,7 @@ class AiaConnector extends Connector implements HasPagination
             UpdateConversationMessageRequest::class => $this->getMockResponse('Conversations/Messages/update'),
             CancelImageJobsRequest::class => $this->getMockResponse('images/cancel'),
             ModelsRequest::class => $this->getMockResponse('Images/models'),
+            WorkflowsRequest::class => $this->getMockResponse('Images/workflows'),
             GetLanguageModelsRequest::class => $this->getMockResponse('LanguageModels/get-language-models'),
             GetTextToSpeechVoicesRequest::class => $this->getMockResponse('TextToSpeech/Voices/index'),
             SynthesizeRequest::class => $this->getMockResponse('TextToSpeech/Voices/synthesize'),

@@ -9,6 +9,7 @@ use IntelligentsDev\AiaConnector\Requests\Images\CreateRequest;
 use IntelligentsDev\AiaConnector\Requests\Images\Data\ImageOptions;
 use IntelligentsDev\AiaConnector\Requests\Images\ModelsRequest;
 use IntelligentsDev\AiaConnector\Requests\Images\ShowImageRequest;
+use IntelligentsDev\AiaConnector\Requests\Images\WorkflowsRequest;
 use Saloon\Exceptions\Request\FatalRequestException;
 use Saloon\Exceptions\Request\RequestException;
 use Saloon\Http\BaseResource;
@@ -61,6 +62,11 @@ class ImageResource extends BaseResource
     public function models(): Response
     {
         return $this->connector->send(new ModelsRequest());
+    }
+
+    public function workflows(): Response
+    {
+        return $this->connector->send(new WorkflowsRequest());
     }
 
     public function cancelImageJobs(array $imageIds): Response
