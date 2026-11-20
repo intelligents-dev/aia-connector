@@ -11,6 +11,8 @@ class ImageOptions implements Arrayable
 
     public ?string $modelName = null;
 
+    public ?string $workflowName = null;
+
     public ?array $webhookUrls = null;
 
     public ?int $priority = null;
@@ -27,12 +29,21 @@ class ImageOptions implements Arrayable
     public function toArray(): array
     {
         return [
-            'model_name' => $this->modelName,
+            'workflow_name' => $this->resolveWorkflowName(),
             'webhook_urls' => $this->webhookUrls,
             'priority' => $this->priority,
             'meta' => $this->meta,
-            ...($this->data ?? []),
+            ...array_diff_key($this->data ?? [], ['workflow_name' => 1, 'model_name' => 1]),
         ];
+    }
+
+    private function resolveWorkflowName(): ?string
+    {
+        return $this->workflowName
+            ?: $this->modelName
+            ?: ($this->data['workflow_name'] ?? null)
+            ?: ($this->data['model_name'] ?? null)
+            ?: null;
     }
 
     /**
@@ -44,6 +55,15 @@ class ImageOptions implements Arrayable
     public function setModelName(?string $modelName): self
     {
         $this->modelName = $modelName;
+        $this->workflowName = $modelName;
+
+        return $this;
+    }
+
+    public function setWorkflowName(?string $workflowName): self
+    {
+        $this->workflowName = $workflowName;
+        $this->modelName = $workflowName;
 
         return $this;
     }

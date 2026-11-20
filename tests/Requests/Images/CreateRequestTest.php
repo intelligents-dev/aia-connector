@@ -7,6 +7,10 @@ use IntelligentsDev\AiaConnector\Requests\Images\CreateRequest;
 use IntelligentsDev\AiaConnector\Requests\Images\Data\ImageOptions;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
+use Saloon\Http\Connector;
+use Saloon\Http\Faking\MockClient;
+use Saloon\Http\Faking\MockResponse;
+use Saloon\Http\Request;
 
 class CreateRequestTest extends TestCase
 {
@@ -56,6 +60,24 @@ class CreateRequestTest extends TestCase
         $this->assertSame('/image/pussy-swap', $request->resolveEndpoint());
     }
 
+    public function test_data_holding_model_name_is_sent_as_workflow_name_only(): void
+    {
+        $mockClient = new MockClient([CreateRequest::class => MockResponse::make([], 200)]);
+        $connector = new FakeAiaConnector();
+        $connector->withMockClient($mockClient);
+        $options = (new ImageOptions())->setData(['model_name' => 'old', 'prompt' => 'a cat']);
+
+        $connector->send(new CreateRequest(Pipeline::TEXT_TO_IMAGE, $options));
+
+        $mockClient->assertSent(function (Request $request): bool {
+            $body = $request->body()->all();
+
+            return $body['workflow_name'] === 'old'
+                && array_key_exists('model_name', $body) === false
+                && $body['prompt'] === 'a cat';
+        });
+    }
+
     public function test_the_three_existing_routes_stay_the_same(): void
     {
         $expected = [
@@ -67,5 +89,13 @@ class CreateRequestTest extends TestCase
         foreach ($expected as $endpoint => $pipeline) {
             $this->assertSame($endpoint, (new CreateRequest($pipeline, new ImageOptions()))->resolveEndpoint());
         }
+    }
+}
+
+class FakeAiaConnector extends Connector
+{
+    public function resolveBaseUrl(): string
+    {
+        return 'https://aia.test';
     }
 }

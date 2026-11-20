@@ -3,6 +3,7 @@
 namespace IntelligentsDev\AiaConnector\Resources;
 
 use IntelligentsDev\AiaConnector\Requests\Worker\ModelWorkerStatsRequest;
+use IntelligentsDev\AiaConnector\Requests\Worker\WorkflowWorkerStatsRequest;
 use Saloon\Exceptions\Request\FatalRequestException;
 use Saloon\Exceptions\Request\RequestException;
 use Saloon\Http\BaseResource;
@@ -22,5 +23,10 @@ class WorkerResource extends BaseResource
     public function modelWorkerStats(array $modelWorkerGroups): Response
     {
         return $this->connector->send(new ModelWorkerStatsRequest($modelWorkerGroups));
+    }
+
+    public function workflowWorkerStats(array $workflowWorkerGroups): Response
+    {
+        return $this->connector->send(new WorkflowWorkerStatsRequest($workflowWorkerGroups));
     }
 }
